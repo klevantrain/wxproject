@@ -7,47 +7,6 @@ class HomeController extends Controller {
     await this.ctx.render('/login/index.ejs', {
       data: '请登录！',
     });
-    // this.ctx.body = 'hi, egg';
-  }
-  async add() {
-    const ctx = this.ctx;
-    let count = ctx.cookies.get('count');
-    count = count ? Number(count) : 0;
-    ctx.cookies.set('count', ++count);
-    ctx.body = count;
-  }
-  async remove() {
-    const ctx = this.ctx;
-    ctx.cookies.set('count', null);
-    ctx.status = 204;
-  }
-  async ceshi() {
-    const ctx = this.ctx;
-
-
-    // if (ctx.isAuthenticated()) {
-    //   ctx.body = `<div>
-    //     <h2>${ctx.path}</h2>
-    //     <hr>
-    //     Logined user: <img src="${ctx.user.photo}"> ${ctx.user.displayName} / ${ctx.user.id} | <a href="/logout">Logout</a>
-    //     <pre><code>${JSON.stringify(ctx.user, null, 2)}</code></pre>
-    //     <hr>
-    //     <a href="/">Home</a> | <a href="/user">User</a>
-    //   </div>`;
-    // } else {
-    //   ctx.session.returnTo = ctx.path;
-    //   ctx.body = `
-    //     <div>
-    //       <h2>${ctx.path}</h2>
-    //       <hr>
-    //       Login with
-    //       <a href="/passport/weibo">Weibo</a> | <a href="/passport/github">Github</a> |
-    //       <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
-    //       <hr>
-    //       <a href="/">Home</a> | <a href="/user">User</a>
-    //     </div>
-    //   `;
-    // }
   }
 }
 
