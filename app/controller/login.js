@@ -15,11 +15,9 @@ class LoginController extends Controller {
   async loginIn() {
     const ctx = this.ctx;
     const user = await ctx.service.login.getLoginInfo(ctx.request.body.userName, ctx.request.body.passWord);
-    console.log(93842342347237423749)
-    console.log(user[0].id)
     if (user != null && user[0] != null) {
       ctx.status = 302;
-      ctx.redirect('/userHome');
+      ctx.redirect('/');
     }
     ctx.session.userId = user[0].id;
   }
@@ -32,15 +30,19 @@ class LoginController extends Controller {
   async ceshi() {
     const ctx = this.ctx;
     const userId = ctx.session.userId;
-    if (userId === null || userId === undefined || userId === "") {
-      await ctx.render('/test/test.ejs', {
+    await ctx.render('/managerUser/index.ejs', {
         data: '请登录！',
       });
-    } else {
-      await ctx.render('/test/test.ejs', {
-        data: '欢迎你' + userId,
-      });
-    }
+
+    // if (userId === null || userId === undefined || userId === "") {
+    //   await ctx.render('/test/test.ejs', {
+    //     data: '请登录！',
+    //   });
+    // } else {
+    //   await ctx.render('/test/test.ejs', {
+    //     data: '欢迎你' + userId,
+    //   });
+    // }
   }
 }
 

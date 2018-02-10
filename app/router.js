@@ -12,8 +12,12 @@ module.exports = app => {
   router.post('/login', controller.login.loginIn);
   router.get('/loginOut', controller.login.loginOut);
   router.get('/userHome', controller.user.userList);
-
+  router.post('/getUserInfo', controller.user.getUserInfo);
+  router.get('/test', controller.login.ceshi);
+  router.post('/updateUserBalance', controller.user.updateUserBalance);
   // router.get('/add', controller.home.add);
   router.get('/manager', controller.manageinfo.find);
-  router.get('/test', controller.login.ceshi);
+  router.post('/getManageInfo', controller.manageinfo.getManageInfo);
+  router.post('/updateManage', controller.manageinfo.updateManage);
+
 };

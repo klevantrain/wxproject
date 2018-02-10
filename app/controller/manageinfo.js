@@ -9,6 +9,25 @@ class ManagerController extends Controller {
     const user = await ctx.service.manager.find(1);
     ctx.body = user;
   }
+  async getManageInfo() {
+    const ctx = this.ctx;
+    const user = await ctx.service.manager.getManageInfo(ctx.request.body);
+    ctx.body = user;
+    ctx.status = 200;
+  }
+  async updateManage() {
+    const ctx = this.ctx;
+    const result = await ctx.service.manager.updateManage(ctx.request.body);
+    if(!result){
+			ctx.status = 504;
+		}else{
+			const user = await ctx.service.manager.getManageInfo({});
+			ctx.status = 200;
+			ctx.body = user;
+		}
+  }
+
+
 }
 
 module.exports = ManagerController;
