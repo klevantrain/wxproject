@@ -18,6 +18,8 @@ class UserService extends Service {
     if ( params.name !== undefined && params.name !== "NULL" && params.name!=="" && params.name !== null){
       query.user_name = params.name;
     }
+    query.status = 0;
+    console.log(query);
     const users = await this.app.mysql.select('manager_info', {
       where: query, // WHERE 条件
       columns: [ 'id', 'user_name', 'status', 'user_level', 'balance', 'password' ], // 要查询的表字段
@@ -48,6 +50,41 @@ class UserService extends Service {
     console.log(updateSuccess);
 
     return updateSuccess;
+  }
+  async deleteManageInfo(params) {
+    const query = {};
+    if (params.id === undefined || params.id === null || params.id === ''){
+      return;
+    }
+    const row = {
+      id: params.id,
+      status: -1,
+    };
+    console.log(row)
+    const result = await this.app.mysql.update('manager_info', row); // 更新 user_info 表中的记录
+    // 判断更新成功
+    const updateSuccess = result.affectedRows === 1;
+    console.log(updateSuccess);
+
+    return updateSuccess;
+  }
+
+
+  async managerAdd(params) {
+    const row = {
+      balance: params.balance,
+      user_level: params.level,
+      user_name: params.userName,
+      password: params.passWord,
+      gmt_create: this.app.mysql.literals.now,
+      gmt_modified: this.app.mysql.literals.now,
+      status: 0
+    };
+
+    const result = await this.app.mysql.insert('manager_info', row); // 更新 user_info 表中的记录
+    const insertSuccess = result.affectedRows === 1;
+    console.log(row);
+    return insertSuccess;
   }
 
 

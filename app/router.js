@@ -19,5 +19,7 @@ module.exports = app => {
   router.get('/manager', controller.manageinfo.find);
   router.post('/getManageInfo', controller.manageinfo.getManageInfo);
   router.post('/updateManage', controller.manageinfo.updateManage);
+  router.post('/managerAdd', controller.manageinfo.managerAdd);
+  router.post('/deleteManageInfo', controller.manageinfo.deleteManageInfo);
 
 };

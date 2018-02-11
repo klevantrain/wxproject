@@ -26,8 +26,29 @@ class ManagerController extends Controller {
 			ctx.body = user;
 		}
   }
+  async deleteManageInfo() {
+    const ctx = this.ctx;
+    const result = await ctx.service.manager.deleteManageInfo(ctx.request.body);
+    if(!result){
+			ctx.status = 504;
+		}else{
+			const user = await ctx.service.manager.getManageInfo({});
+			ctx.status = 200;
+			ctx.body = user;
+		}
+  }
 
-
+    async managerAdd() {
+      const ctx = this.ctx;
+      const result = await ctx.service.manager.managerAdd(ctx.request.body);
+      if(!result){
+        ctx.status = 504;
+      }else{
+        // const user = await ctx.service.manager.getManageInfo({});
+        ctx.status = 200;
+        // ctx.body = user;
+      }
+    }
 }
 
 module.exports = ManagerController;

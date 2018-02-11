@@ -18,8 +18,8 @@ class LoginController extends Controller {
     if (user != null && user[0] != null) {
       ctx.status = 302;
       ctx.redirect('/');
+      ctx.session.userId = user[0].id;
     }
-    ctx.session.userId = user[0].id;
   }
   async loginOut() {
     const ctx = this.ctx;
