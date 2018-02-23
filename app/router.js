@@ -22,4 +22,6 @@ module.exports = app => {
   router.post('/managerAdd', controller.manageinfo.managerAdd);
   router.post('/deleteManageInfo', controller.manageinfo.deleteManageInfo);
 
+  router.post('/getSearchLog', controller.search.getSearchLog);
+
 };
