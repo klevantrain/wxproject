@@ -5,20 +5,19 @@ const Controller = require('egg').Controller;
 class LoginController extends Controller {
   async logined() {
     const ctx = this.ctx;
-    let userId = ctx.session.userId;
-    if (userId === null || userId === undefined || userId === "") {
-      console.log(123123)
-      ctx.render('/public/home/index.html', "result");
-      return;
-    }
+    const userId = ctx.session.userId;
+    const loginInfo = {};
   }
   async loginIn() {
     const ctx = this.ctx;
     const user = await ctx.service.login.getLoginInfo(ctx.request.body.userName, ctx.request.body.passWord);
     if (user != null && user[0] != null) {
+      ctx.session.userId = user[0].id;
+      ctx.session.userName = user[0].user_name;
+      ctx.session.userLevel = user[0].user_level;
+      // ctx.session.loginInfo = user[0];
       ctx.status = 302;
       ctx.redirect('/');
-      ctx.session.userId = user[0].id;
     }
   }
   async loginOut() {
@@ -26,23 +25,6 @@ class LoginController extends Controller {
     ctx.session = null;
     ctx.redirect('/toLogin');
     ctx.body = '退出成功！';
-  }
-  async ceshi() {
-    const ctx = this.ctx;
-    const userId = ctx.session.userId;
-    await ctx.render('/managerUser/index.ejs', {
-        data: '请登录！',
-      });
-
-    // if (userId === null || userId === undefined || userId === "") {
-    //   await ctx.render('/test/test.ejs', {
-    //     data: '请登录！',
-    //   });
-    // } else {
-    //   await ctx.render('/test/test.ejs', {
-    //     data: '欢迎你' + userId,
-    //   });
-    // }
   }
 }
 

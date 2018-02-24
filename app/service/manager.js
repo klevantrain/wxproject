@@ -4,7 +4,6 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
   async find(uid) {
-    console.log(uid)
     // 假如 我们拿到用户 id 从数据库获取用户详细信息
     const user = await this.app.mysql.get('manager_info', { id: uid });
     return  user ;
@@ -19,7 +18,6 @@ class UserService extends Service {
       query.user_name = params.name;
     }
     query.status = 0;
-    console.log(query);
     const users = await this.app.mysql.select('manager_info', {
       where: query, // WHERE 条件
       columns: [ 'id', 'user_name', 'status', 'user_level', 'balance', 'password' ], // 要查询的表字段
@@ -43,11 +41,9 @@ class UserService extends Service {
       user_name:params.name,
       password:params.password
     };
-    console.log(row);
     const result = await this.app.mysql.update('manager_info', row); // 更新 user_info 表中的记录
     // 判断更新成功
     const updateSuccess = result.affectedRows === 1;
-    console.log(updateSuccess);
 
     return updateSuccess;
   }
@@ -60,11 +56,9 @@ class UserService extends Service {
       id: params.id,
       status: -1,
     };
-    console.log(row)
     const result = await this.app.mysql.update('manager_info', row); // 更新 user_info 表中的记录
     // 判断更新成功
     const updateSuccess = result.affectedRows === 1;
-    console.log(updateSuccess);
 
     return updateSuccess;
   }
@@ -83,7 +77,6 @@ class UserService extends Service {
 
     const result = await this.app.mysql.insert('manager_info', row); // 更新 user_info 表中的记录
     const insertSuccess = result.affectedRows === 1;
-    console.log(row);
     return insertSuccess;
   }
 

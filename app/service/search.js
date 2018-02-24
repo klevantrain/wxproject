@@ -16,7 +16,6 @@ class SearchService extends Service {
       query.wx_id = params.wxId;
     }
     query.status = 0;
-    console.log(query);
     const users = await this.app.mysql.select('user_log', {
       where: query, // WHERE 条件
       columns: [ 'id', 'wx_id', 'gmt_create', 'user_name', 'status', 'search_keywords' ], // 要查询的表字段
