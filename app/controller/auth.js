@@ -7,11 +7,16 @@ class AuthController extends Controller {
   async auth() {
     console.log(11111111);
     const ctx = this.ctx;
-    const signature = ctx.request.body.signature;
-    const timestamp = ctx.request.body.timestamp;
-    const nonce = ctx.request.body.nonce;
-    const echostr = ctx.request.body.echostr;
+    // const signature = ctx.request.body.signature;
+    // const timestamp = ctx.request.body.timestamp;
+    // const nonce = ctx.request.body.nonce;
+    // const echostr = ctx.request.body.echostr;
+    const signature = ctx.query.signature;
+    const timestamp =ctx.query.timestamp;
+    const nonce =ctx.query.nonce;
+    const echostr = ctx.query.echostr;
 
+    // ctx.query.signature;
     // const signature = "ctx.request.body.signature";
     // const timestamp = "ctx.request.body.timestamp";
     // const nonce = "ctx.request.body.nonce";
