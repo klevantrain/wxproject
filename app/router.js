@@ -28,4 +28,7 @@ module.exports = app => {
 
   router.post('/getSearchLog', controller.search.getSearchLog);
 
+  router.get('/auth', controller.auth.auth);
+  router.post('/auth', controller.auth.auth);
+
 };
