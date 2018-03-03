@@ -8,7 +8,7 @@ module.exports = appInfo => {
   config.keys = '_1517759935166_4104';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [ 'interceptor' ];
   config.mysql = {
   // 单数据库信息配置
   client: {

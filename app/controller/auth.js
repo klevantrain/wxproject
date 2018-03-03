@@ -49,7 +49,7 @@ class AuthController extends Controller {
     console.log(echostr);
 console.log("=============================");
 console.log(ctx.query);
-console.log(ctx.request);
+console.log(ctx.request.req);
 
 console.log(ctx.request.body);
 
