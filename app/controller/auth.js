@@ -38,7 +38,6 @@ const XMLJS = require('xml2js');
 // };
 class AuthController extends Controller {
   async auth() {
-    console.log(11111111);
     const ctx = this.ctx;
     const signature = ctx.query.signature;
     const timestamp = ctx.query.timestamp;
@@ -49,6 +48,9 @@ class AuthController extends Controller {
     console.log(nonce);
     console.log(echostr);
 console.log("=============================");
+console.log(ctx.query);
+console.log(ctx.request);
+
 console.log(ctx.request.body);
 
     //1.将token、timestamp和nonce按字母排序排序，并转成字符串拼成一个
@@ -59,7 +61,7 @@ console.log(ctx.request.body);
     const code = sha1Code.update(str, 'utf-8').digest("hex");
     //3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature){
-      console.log(验证成功);
+      console.log("验证成功");
       ctx.body = echostr;
     } else {
         ctx.body = 'error';
