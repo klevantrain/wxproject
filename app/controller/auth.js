@@ -62,6 +62,12 @@ console.log(ctx.request.body);
     //3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature){
       console.log("验证成功");
+
+      ctx.request.on("data", function( data ) {
+        console.log(data);
+      });
+
+
       ctx.body = echostr;
     } else {
         ctx.body = 'error';
