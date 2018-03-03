@@ -38,6 +38,13 @@ config.view = {
   },
 };
 
+  config.security = {
+    csrf: {
+      enable: true,
+      ignore: '/auth',
+    },
+  };
+
 // config.security = {
 //   domainWhiteList:[ 'localhost' ],  // security whitelist, starts with '.'
 // };
