@@ -1,7 +1,7 @@
 'use strict';
 
 const getRawBody = require('raw-body');
-const xmlparser = require('xml2js');
+const xmlparser = require('xml2json');
 
 
 module.exports = options => {
