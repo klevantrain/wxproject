@@ -16,7 +16,7 @@ module.exports = options => {
         console.log("========")
 				let buff = yield getRawBody(this.request.req);
         console.log("========"+buff)
-
+console.log("==123123======"+xmlparser.parseString(buff))
 				let resultjson = JSON.parse(xmlParser.parseString(buff)).xml;
         console.log("========"+JSON.parse(xmlparser.parseString(buff)))
         console.log(resultjson)
