@@ -1,9 +1,9 @@
-const getRawBody = require("raw-body");
+'use strict';
+
+const getRawBody = require('raw-body');
 const xmlparser = require('xml2js');
 
-/**
- * 接口req res拦截器
- */
+
 module.exports = options => {
     return function* interceptor(next) {
 		//拦截request请求
@@ -12,8 +12,13 @@ module.exports = options => {
 		try{
 			//把xml转成json
 			if(this.request.header["content-type"] === 'text/xml'){
+        console.log("========")
 				let buff = yield getRawBody(this.request.req);
+        console.log("========"+buff)
+
 				let resultjson = JSON.parse(xmlparser.toJson(buff)).xml;
+        console.log("========"+buff)
+
 				this.request.body = resultjson;
 			} else {
 				//入参处理
@@ -23,7 +28,7 @@ module.exports = options => {
 			}
 
 		} catch (e) {
-			this.response.body = errorModule.JSON_PARSE_ERR;
+			this.response.body = "json解析出错";
 			this.logger.info(`----出参----${JSON.stringify(this.response.body)}`);
 			return;
 		}
