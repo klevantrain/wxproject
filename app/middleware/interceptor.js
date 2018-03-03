@@ -10,7 +10,7 @@ module.exports = options => {
 		//拦截request请求
 		this.logger.info(`----入参----${JSON.stringify(this.request.body)}`);
 		//入参参数校验
-		try{
+		// try{
 			//把xml转成json
 			if(this.request.header["content-type"] === 'text/xml'){
         console.log("========")
@@ -28,11 +28,11 @@ module.exports = options => {
 				this.request.body = JSON.parse(reqJson);
 			}
 
-		} catch (e) {
-			this.response.body = "json解析出错";
-			this.logger.info(`----出参----${JSON.stringify(this.response.body)}`);
-			return;
-		}
+		// } catch (e) {
+		// 	this.response.body = "json解析出错";
+		// 	this.logger.info(`----出参----${JSON.stringify(this.response.body)}`);
+		// 	return;
+		// }
 
 		//返回控制权给控制器
 		yield next;
