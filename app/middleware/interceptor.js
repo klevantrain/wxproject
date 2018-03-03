@@ -1,5 +1,5 @@
 const getRawBody = require("raw-body");
-const xmlparser = require('xml2json');
+const xmlparser = require('xml2js');
 
 /**
  * 接口req res拦截器

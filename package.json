@@ -16,7 +16,8 @@
     "egg-view-nunjucks": "^2.1.4",
     "isomorphic-fetch": "^2.2.1",
     "mocha": "^1.18.2",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+    "xml2json": "^0.11.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
