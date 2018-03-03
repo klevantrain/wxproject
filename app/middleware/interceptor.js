@@ -1,8 +1,9 @@
 'use strict';
 
 const getRawBody = require('raw-body');
-const xmlparser = require('xml2json');
+const xml2js = require('xml2js');
 
+const xmlParser = new xml2js.Parser({explicitArray : false, ignoreAttrs : true})
 
 module.exports = options => {
     return function* interceptor(next) {
@@ -16,9 +17,9 @@ module.exports = options => {
 				let buff = yield getRawBody(this.request.req);
         console.log("========"+buff)
 
-				let resultjson = JSON.parse(xmlparser.toJson(buff)).xml;
-        console.log("========"+buff)
-
+				let resultjson = JSON.parse(xmlparser.parseString(buff)).xml;
+        console.log("========"+JSON.parse(xmlparser.parseString(buff)))
+        console.log(resultjson)
 				this.request.body = resultjson;
 			} else {
 				//入参处理
