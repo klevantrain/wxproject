@@ -3,6 +3,22 @@
 const Service = require('egg').Service;
 
 class UserService extends Service {
+
+  async createUser(params){
+    const row = {
+      wx_id: params.FromUserName,
+      balance: 10,
+      user_level: 0,
+      user_name: params.nickName,
+      gmt_create: this.app.mysql.literals.now,
+      gmt_modified: this.app.mysql.literals.now,
+      status: 0,
+    };
+
+    const result = await this.app.mysql.insert('user_info', row); // 更新 user_info 表中的记录
+    const insertSuccess = result.affectedRows === 1;
+    return insertSuccess;
+  }
   async find(params) {
     const query = {};
     if (params.id !== undefined && params.id !== null && params.id !== ''){
@@ -14,6 +30,7 @@ class UserService extends Service {
     if (params.wxId !==undefined &&params.wxId !== null&&params.wxId!=""){
       query.wx_id = params.wxId;
     }
+    query.status = 0;
     const users = await this.app.mysql.select('user_info', {
       where: query, // WHERE 条件
       columns: [ 'id', 'user_name', 'wx_id', 'status', 'user_level', 'balance' ], // 要查询的表字段
@@ -42,7 +59,7 @@ class UserService extends Service {
 
     return updateSuccess;
   }
-  async managerUserBlance(params,userId) {
+  async managerUserBlance(params, userId) {
     /**
     0:参数不合法
     1: 未找到用户
@@ -104,6 +121,30 @@ class UserService extends Service {
 
     return result2.affectedRows === 1;
   }
+
+  async deleteWxUser(params) {
+    const users = await this.app.mysql.select('user_info', {
+      where: { wx_id: params.FromUserName, status: 0 }, // WHERE 条件
+      columns: [ 'id', 'user_name', 'wx_id', 'status', 'user_level', 'balance' ], // 要查询的表字段
+      limit: 10000, // 返回数据量
+      offset: 0, // 数据偏移量
+    });
+    // console.log(JSON.stringify(users));
+
+    if(users!=null && users[0]!=null){
+      // console.log(JSON.stringify(users[0]));
+      const row = {
+        id: users[0].id,
+        status: -1,
+      };
+      const result = await this.app.mysql.update('user_info', row); // 更新 user_info 表中的记录
+      // 判断更新成功
+      const updateSuccess = result.affectedRows === 1;
+      return updateSuccess;
+    }
+  }
+
+
 }
 
 module.exports = UserService;

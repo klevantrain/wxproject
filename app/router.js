@@ -17,8 +17,6 @@ module.exports = app => {
   router.post('/updateUserBalance', controller.user.updateUserBalance);
   router.post('/managerUserBlance', controller.user.managerUserBlance);
 
-
-
   router.get('/toSecond', controller.manageinfo.toSecond);
   router.get('/manager', controller.manageinfo.find);
   router.post('/getManageInfo', controller.manageinfo.getManageInfo);
@@ -30,5 +28,9 @@ module.exports = app => {
 
   router.get('/auth', controller.auth.auth);
   router.post('/auth', controller.auth.auth);
+
+  router.get('/createMenu', controller.menu.createMenu);
+  router.get('/test12', controller.test.test);
+
 
 };

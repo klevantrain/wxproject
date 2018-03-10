@@ -4,6 +4,16 @@ const Controller = require('egg').Controller;
 
 
 class UserController extends Controller {
+
+	async createUser() {
+		const ctx = this.ctx;
+    const user = await ctx.service.user.createUser(ctx.request.body);
+		if (user === true) {
+			ctx.body = 'success';
+			ctx.status = 200;
+		}
+
+	}
 	async userList() {
 		if(ctx.session.userLevel!="top"){
       ctx.redirect('/toLogin');

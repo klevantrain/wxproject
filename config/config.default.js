@@ -40,7 +40,7 @@ config.view = {
 
   config.security = {
     csrf: {
-      enable: true,
+      enable: false,
       ignore: '/auth',
     },
   };
