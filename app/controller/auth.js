@@ -148,15 +148,22 @@ class AuthController extends Controller {
          ctx.service.queryconfig.setQueryConfig(requests.FromUserName,data);
        }
      }else{
-       resulBody = _this.queryApple(queryKey,ctx,queryConfig,responseMes,requests);
-       //查询历史记录
-       // console.log("wxInfo"+JSON.stringify(wxInfo))
-       const userLogParam = {
-          wx_id: requests.FromUserName,
-          name: wxInfo.nickname,
-          key: baseConfig.typeEnumnName[queryConfig],
-        }
-        ctx.service.search.createSearchLog(userLogParam);
+       const judge = await ctx.service.auth.judgeBlanace(requests);
+       if(judge!=null && judge !=''&& judge.allow == true){
+         resulBody = _this.queryApple(queryKey,ctx,queryConfig,responseMes,requests);
+         //查询历史记录
+         // console.log("wxInfo"+JSON.stringify(wxInfo))
+         const userLogParam = {
+            wx_id: requests.FromUserName,
+            name: wxInfo.nickname,
+            key: baseConfig.typeEnumnName[queryConfig],
+          }
+          ctx.service.search.createSearchLog(userLogParam);
+       }else{
+         resulBody = _this.sendBalanceLow(requests,judge);
+       }
+
+
        }
    }
     return resulBody;
