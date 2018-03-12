@@ -148,6 +148,8 @@ class AuthController extends Controller {
          ctx.service.queryconfig.setQueryConfig(requests.FromUserName,data);
        }
      }else{
+
+       requests.EventKey = await ctx.service.queryConfig.getQueryConfig(requests.FromUserName);
        const judge = await ctx.service.auth.judgeBlanace(requests);
        if(judge!=null && judge !=''&& judge.allow == true){
          resulBody = _this.queryApple(queryKey,ctx,queryConfig,responseMes,requests);
