@@ -118,7 +118,7 @@ class AuthController extends Controller {
         responseMes.content = '公众号内部服务器错误';
       }
 
-      if(requests.EventKey != "MY_INFORMATION"){
+      if(requests.EventKey != "MY_INFORMATION" && requests.EventKey != "DEFAULT_QUERY_SET" ){
           //判断余额，余额充足的情况允许查询，否则提示余额不足
           const judge = await ctx.service.auth.judgeBlanace(requests);
           if(judge!=null && judge !=''&& judge.allow == true){
