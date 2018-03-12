@@ -21,11 +21,11 @@ class AuthController extends Controller {
     //3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature){
        // ctx.body = 'success';
-       // ctx.body = echostr;
-      await this.dealRequest(ctx).then(function(result){
-        // console.log("====="+result);
-        ctx.body = result;
-      });
+       ctx.body = echostr;
+      // await this.dealRequest(ctx).then(function(result){
+      //   // console.log("====="+result);
+      //   ctx.body = result;
+      // });
     } else {
         ctx.body = 'error';
     }
