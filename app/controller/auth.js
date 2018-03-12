@@ -126,6 +126,8 @@ class AuthController extends Controller {
           }else{
             resulBody = _this.sendBalanceLow(requests,judge);
           }
+      }else{
+        resulBody = _this.send(responseMes);
       }
    }else if(requests != null && requests.MsgType === 'text'){
      // console.log("requests=="+JSON.stringify(requests));
