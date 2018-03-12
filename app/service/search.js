@@ -24,6 +24,20 @@ class SearchService extends Service {
     });
     return users;
   }
+  async createSearchLog(params) {
+    const row = {
+      wx_id: params.wx_id,
+      user_name: params.name,
+      search_keywords: params.key,
+      gmt_create: this.app.mysql.literals.now,
+      gmt_modified: this.app.mysql.literals.now,
+      status: 0,
+    };
+    console.log(JSON.stringify(row));
+    const result = await this.app.mysql.insert('user_log', row); // 更新 user_info 表中的记录
+    const insertSuccess = result.affectedRows === 1;
+    return insertSuccess;
+  }
 }
 
 module.exports = SearchService;

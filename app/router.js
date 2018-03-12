@@ -31,6 +31,8 @@ module.exports = app => {
 
   router.get('/createMenu', controller.menu.createMenu);
   router.get('/test12', controller.test.test);
+  router.get('/testCurl', controller.test.request);
+
 
 
 };
