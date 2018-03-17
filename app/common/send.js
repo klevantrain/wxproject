@@ -4,16 +4,38 @@ const config = require('./config');
 const baseSend = {
   //回复事件消息
   send(data){
+    // console.log(data)
     //tousername  发送者openid
+    let content = '<Content><![CDATA[您当前选择的是"'+data.content + '"。请输入序列号或IMEI，批量查询请用空格或换行隔开'+
+              '一次最多查询5个(10分钟内有效)]]></Content>';
+    if(data.EventKey == "REPAIR_PROGRESS"){
+      content = '<Content><![CDATA[您当前选择的是"'+data.content + '"。请输入序列号和苹果的维修ID，'+
+                  '中间用空格隔开(10分钟内有效)]]></Content>';
+    }else if(data.EventKey =="DEFAULT_QUERY_SET"){
+      content = '<Content><![CDATA['+data.content + ']]></Content>';
+    }
+    // console.log(content);
+
+
    const resMsg = '<xml>' +
       '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
       '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
       '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
-      '<MsgType><![CDATA[text]]></MsgType>' +
-      '<Content><![CDATA[您当前选择的是"'+data.content + '"。请输入序列号或IMEI，批量查询请用空格或换行隔开'+
-                '一次最多查询5个(10分钟内有效)]]></Content>' +
+      '<MsgType><![CDATA[text]]></MsgType>' +content
+       +
       '</xml>';
       return resMsg;
+  },
+  sendViewInfo(data){
+    const resMsg = '<xml>' +
+       '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+       '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+       '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+       '<MsgType><![CDATA[view]]></MsgType>' +
+       '<Content><![CDATA[您当前选择的是"'+data.content + '"。请输入序列号或IMEI，批量查询请用空格或换行隔开'+
+                 '一次最多查询5个(10分钟内有效)]]></Content>' +
+       '</xml>';
+       return resMsg;
   },
   sendQueryError(data){
     const resMsg = '<xml>' +
@@ -106,7 +128,37 @@ const baseSend = {
                  '查询结果：'+ '\n' +
                  '手机型号：'+ data.querys.model + '\n' +
                   '维修状态：'+ isRepaire;
+    }else if(data.type == "REPAIR_PROGRESS"){
+      content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
+                 '输入数据：'+ data.key + '\n' +
+                 '查询结果：'+ '\n' +
+                 '手机型号：'+ data.querys.product + '\n' +
+                 '维修时间：'+ data.querys.time + '\n' +
+                  '维修状态：'+ data.querys.status + '\n' +
+                  '维修详情：'+ data.querys.description;
+    }else if(data.type == "ID_BLACK_WHITE"){
+      let idBW = "黑";
+      if(data.querys.icloud != "Lost"){
+          idBW = "白";
+      }
+      content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
+                 '输入数据：'+ data.key + '\n' +
+                 '查询结果：'+ '\n' +
+                 '手机型号：'+ data.querys.model + '\n' +
+                 'ID黑白：'+ idBW ;
+    }else if(data.type == "NET_LOCK"){
+      let isLocked = "有锁";
+      if(data.querys.simlock != "locked"){
+          isLocked = "无锁";
+      }
+      content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
+                 '输入数据：'+ data.key + '\n' +
+                 '查询结果：'+ '\n' +
+                 '手机型号：'+ data.querys.model + '\n' +
+                 '网络锁：'+ isLocked ;
     }
+
+
 
     const resMsg = '<xml>' +
        '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +

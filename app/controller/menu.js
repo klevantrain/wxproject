@@ -6,7 +6,7 @@ const Controller = require('../core/base_controller');
 class MenuController extends Controller {
   async createMenu() {
     const ctx = this.ctx;
-    ctx.body = "123123";
+    // ctx.body = "123123";
     this.getAccessToken(ctx).then(function (result){
       const createResult = ctx.curl('https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' + result.access_token, {
         // 必须指定 method
@@ -97,16 +97,22 @@ class MenuController extends Controller {
                          "sub_button": [ ]
                        },
                        {
-                           "type": "click",
-                           "name": "使用说明",
-                           "key": "INSTRUCTIONS",
-                           "sub_button": [ ]
+                         "type": "view",
+                         "name": "使用说明",
+                         "type":"view",
+                         "url":"http://managerchuang.hk1.tunnelfrp.cc/contactUs"
+                           //
+                           // "type": "click",
+                           // "name": "使用说明",
+                           // "key": "INSTRUCTIONS",
+                           // "sub_button": [ ]
                         },
                         {
-                            "type": "click",
+                            "type": "view",
                             "name": "联系客服",
-                            "key": "CUSTOMER_SERVICE",
-                            "sub_button": [ ]
+                            "type":"view",
+                            "url":"http://www.soso.com/"
+
                          },
                          {
                              "type": "click",
@@ -123,6 +129,7 @@ class MenuController extends Controller {
         // 明确告诉 HttpClient 以 JSON 格式处理返回的响应 body
         dataType: 'json',
       });
+      console.log(JSON.stringify(createResult))
       ctx.body = createResult.data;
 
 

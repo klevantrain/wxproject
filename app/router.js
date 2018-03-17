@@ -34,5 +34,10 @@ module.exports = app => {
   router.get('/testCurl', controller.test.request);
 
 
+  router.get('/contactUs', controller.dingdang.contactUs);
+
+
+
+
 
 };

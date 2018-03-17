@@ -7,6 +7,7 @@ const token = 'sunshichaung';
 const XMLJS = require('xml2js');
 class AuthController extends Controller {
   async auth() {
+    // console.log(12312312)
     const ctx = this.ctx;
     const signature = ctx.query.signature;
     const timestamp = ctx.query.timestamp;
@@ -64,9 +65,10 @@ class AuthController extends Controller {
     const responseMes = {
        fromusername : requests.FromUserName,
        tousername   : requests.ToUserName,
+       EventKey : requests.EventKey
     }
     //点击事件
-    const filter = requests.EventKey != "MY_INFORMATION"
+    const filter = requests.EventKey != "MY_INFORMATION"&& requests.EventKey != "CUSTOMER_SERVICE"
           &&  requests.EventKey !="CUSTOMER_SERVICE" &&  requests.EventKey !="INSTRUCTIONS";
     if(requests != null && requests.Event === 'CLICK'){
       if(filter){
@@ -95,7 +97,7 @@ class AuthController extends Controller {
       }else if(requests.EventKey === "DEFAULT_QUERY_SET" ){
         responseMes.content =
                    '请输入默认查询编号：'+ '\n' +
-                   '0: 取消默认查询' + '\n' +
+                   // '0: 取消默认查询' + '\n' +
                    '1: IMEI/序列号查询' + '\n' +
                    '2: ID激活锁查询'  + '\n' +
                    '3: 查看是否正在保修'  + '\n' +
@@ -110,15 +112,22 @@ class AuthController extends Controller {
           wxId : requests.FromUserName,
         }
         const userInfo = await ctx.service.user.find(params);
+        // console.log("userInfo"+JSON.stringify(params));
         const queryConfig = await ctx.service.queryconfig.getAllConfigsByWxId(requests.FromUserName);
         resulBody = _this.sendMyInfo(responseMes,userInfo,baseConfig,queryConfig);
 
         // console.log(resulBody);
+      }else if(requests.EventKey === "CUSTOMER_SERVICE"){
+        // resulBody = _this.sendViewInfo(responseMes,userInfo,baseConfig,queryConfig);
       }else {
         responseMes.content = '公众号内部服务器错误';
       }
 
-      if(requests.EventKey != "MY_INFORMATION" && requests.EventKey != "DEFAULT_QUERY_SET" ){
+
+
+
+      const isNeedJudge = requests.EventKey != "MY_INFORMATION" && requests.EventKey != "DEFAULT_QUERY_SET" ;
+      if(isNeedJudge){
           //判断余额，余额充足的情况允许查询，否则提示余额不足
           const judge = await ctx.service.auth.judgeBlanace(requests);
           if(judge!=null && judge !=''&& judge.allow == true){
@@ -127,7 +136,11 @@ class AuthController extends Controller {
             resulBody = _this.sendBalanceLow(requests,judge);
           }
       }else{
-        resulBody = _this.send(responseMes);
+        if(requests.EventKey != "MY_INFORMATION"  && requests.EventKey != "CUSTOMER_SERVICE"){
+
+            resulBody = _this.send(responseMes);
+
+        }
       }
    }else if(requests != null && requests.MsgType === 'text'){
      // console.log("requests=="+JSON.stringify(requests));
@@ -149,7 +162,7 @@ class AuthController extends Controller {
        }
      }else{
 
-       requests.EventKey = await ctx.service.queryConfig.getQueryConfig(requests.FromUserName);
+       requests.EventKey = await ctx.service.queryconfig.getQueryConfig(requests.FromUserName);
        const judge = await ctx.service.auth.judgeBlanace(requests);
        if(judge!=null && judge !=''&& judge.allow == true){
          resulBody = _this.queryApple(queryKey,ctx,queryConfig,responseMes,requests);
@@ -164,10 +177,10 @@ class AuthController extends Controller {
        }else{
          resulBody = _this.sendBalanceLow(requests,judge);
        }
-
-
        }
    }
+   console.log(resulBody);
+
     return resulBody;
   }
 

@@ -61,6 +61,14 @@ class BaseController extends Controller {
     }else if(type == "IS_REPAIR"){
       url = 'https://api.3023.com/apple/repair?sn=' + key ;
     }
+    else if(type == "REPAIR_PROGRESS"){
+      const arrs = key.split(" ");
+      url = 'https://api.3023.com/apple/repair?app=details&sn=' + arrs[0] +'&id='+ arrs[1];
+    }else if(type == "ID_BLACK_WHITE"){
+      url = 'https://api.3023.com/apple/icloud?sn=' + key ;
+    }else if(type == "NET_LOCK"){
+      url = 'https://api.3023.com/apple/simlock?sn=' + key ;
+    }
     const result = await ctx.curl(url, {
       // data: {key : '6d278cde16510d142a8f7667a4792a28',},
       dataType: 'json',
