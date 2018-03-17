@@ -141,6 +141,10 @@ class QueryConfigService extends Service {
     await this.app.mysql.update('query_config', params);
   }
 
+  async updateDefaultQueryTimes(){
+    const results = await this.app.mysql.query('update query_config set imei_times =  ? ,id_times=?  ,id_black_white = ? where status = ?', [3, 1,1,0]);
+  }
+
 
 }
 

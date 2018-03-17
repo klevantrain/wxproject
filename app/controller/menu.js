@@ -99,8 +99,8 @@ class MenuController extends Controller {
                        {
                          "type": "view",
                          "name": "使用说明",
-                         "type":"view",
-                         "url":"http://managerchuang.hk1.tunnelfrp.cc/contactUs"
+                         "type":"view",  
+                         "url":"http://47.96.140.156/contactUs"
                            //
                            // "type": "click",
                            // "name": "使用说明",
