@@ -19,6 +19,7 @@ class SearchService extends Service {
     const users = await this.app.mysql.select('user_log', {
       where: query, // WHERE 条件
       columns: [ 'id', 'wx_id', 'gmt_create', 'user_name', 'status', 'search_keywords' ], // 要查询的表字段
+      orders: [['gmt_create','desc']],
       limit: 10000, // 返回数据量
       offset: 0, // 数据偏移量
     });
