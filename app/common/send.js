@@ -38,14 +38,14 @@ const baseSend = {
        return resMsg;
   },
   sendQueryError(data){
-    const resMsg = '<xml>' +
-       '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
-       '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
-       '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
-       '<MsgType><![CDATA[text]]></MsgType>' +
-       '<Content><![CDATA['+data.content+ ']]></Content>' +
-       '</xml>';
-    return resMsg;
+    // const resMsg = '<xml>' +
+    //    '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+    //    '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+    //    '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+    //    '<MsgType><![CDATA[text]]></MsgType>' +
+    //    '<Content><![CDATA['+data.content+ ']]></Content>' +
+    //    '</xml>';
+    return data.content;
   },
   sendSetDefaultQueryMes(data,queryConfig){
     const resMsg = '<xml>' +
@@ -84,11 +84,12 @@ const baseSend = {
        '</xml>';
     return resMsg;
   },
-  sendQuerySuccess(data){
+  buildSuccessContent(data){
+    // console.log(JSON.stringify(data))
     let content = '';
     if(data.type== "IMEI"){
       const activated = data.querys.activated === true ? "已激活" : "未激活";
-      const coverage = data.querys.coverage === "expired" ? "已过保" : data.querys.coverage+"到期，剩余"+data.querys.daysleft;
+      const coverage = data.querys.coverage === "expired" ? "已过保" : data.querys.coverage+"到期，剩余"+data.querys.daysleft +"天";
       const applecare = data.querys.applecare === true? "是": "否";
       const loaner = data.querys.loaner === "Y"? "是": "否";
        content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
@@ -106,7 +107,7 @@ const baseSend = {
                   '是否延保：' + applecare ;
     }
     else if(data.type== "ID"){
-      const locked = data.querys.locked === "ON" ? "开启" : "关闭";
+      const locked = data.querys.data.locked === true ? "开启" : "关闭";
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
@@ -115,58 +116,66 @@ const baseSend = {
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
-                  data.querys;
+                  data.querys.data;
     }else if(data.type == "IS_REPAIR"){
       let isRepaire = "无维修历史！"
-      if(data.querys.status =="once repaired"){
+      if(data.querys.data.status =="once repaired"){
           isRepaire = "曾经有维修历史！"
-      }else if(data.querys.status =="under repair	"){
+      }else if(data.querys.data.status =="under repair	"){
           isRepaire = "正在维修中！"
       }
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
-                 '手机型号：'+ data.querys.model + '\n' +
+                 '手机型号：'+ data.querys.data.model + '\n' +
                   '维修状态：'+ isRepaire;
     }else if(data.type == "REPAIR_PROGRESS"){
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
-                 '手机型号：'+ data.querys.product + '\n' +
-                 '维修时间：'+ data.querys.time + '\n' +
-                  '维修状态：'+ data.querys.status + '\n' +
-                  '维修详情：'+ data.querys.description;
+                 '手机型号：'+ data.querys.data.product + '\n' +
+                 '维修时间：'+ data.querys.data.time + '\n' +
+                  '维修状态：'+ data.querys.data.status + '\n' +
+                  '维修详情：'+ data.querys.data.description;
     }else if(data.type == "ID_BLACK_WHITE"){
       let idBW = "黑";
-      if(data.querys.icloud != "Lost"){
+      if(data.querys.data.icloud != "Lost"){
           idBW = "白";
       }
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
-                 '手机型号：'+ data.querys.model + '\n' +
+                 '手机型号：'+ data.querys.data.model + '\n' +
                  'ID黑白：'+ idBW ;
     }else if(data.type == "NET_LOCK"){
       let isLocked = "有锁";
-      if(data.querys.simlock != "locked"){
+      if(data.querys.data.simlock != "locked"){
           isLocked = "无锁";
       }
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
-                 '手机型号：'+ data.querys.model + '\n' +
+                 '手机型号：'+ data.querys.data.model + '\n' +
                  '网络锁：'+ isLocked ;
     }
-
-
+    return content;
+  },
+  sendQuerySuccess(requests,data){
 
     const resMsg = '<xml>' +
-       '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
-       '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+       '<ToUserName><![CDATA[' + requests.FromUserName + ']]></ToUserName>' +
+       '<FromUserName><![CDATA[' + requests.ToUserName + ']]></FromUserName>' +
        '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
        '<MsgType><![CDATA[text]]></MsgType>' +
-       '<Content><![CDATA[' + content +']]></Content>' +
+       '<Content><![CDATA[' +  data +']]></Content>' +
        '</xml>';
+    // const resMsg = '<xml>' +
+    //    '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+    //    '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+    //    '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+    //    '<MsgType><![CDATA[text]]></MsgType>' +
+    //    '<Content><![CDATA[' + data.content +']]></Content>' +
+    //    '</xml>';
     return resMsg;
   },
 

@@ -123,14 +123,13 @@ class QueryConfigService extends Service {
   }
 
   async getQueryPrice(type) {
-    console.log(type)
     const queryPrice = await this.app.mysql.select('query_price_config', { // 搜索 post 表
       where: { type: type,status: 0 }, // WHERE 条件
       columns: [ 'price' ,'type'], // 要查询的表字段
       limit: 100, // 返回数据量
       offset: 0, // 数据偏移量
     });
-    console.log(JSON.stringify(queryPrice));
+    // console.log(JSON.stringify(queryPrice));
     return queryPrice[0].price;
   }
   async updateQueryConfig(params) {
@@ -144,8 +143,23 @@ class QueryConfigService extends Service {
   async updateDefaultQueryTimes(){
     const results = await this.app.mysql.query('update query_config set imei_times =  ? ,id_times=?  ,id_black_white = ? where status = ?', [3, 1,1,0]);
   }
-
-
+  async getQueryList() {
+    const queryPrice = await this.app.mysql.select('query_price_config', { // 搜索 post 表
+      where: { status: 0 }, // WHERE 条件
+      columns: [ 'id','price' ,'type_name','type'], // 要查询的表字段
+      limit: 100, // 返回数据量
+      offset: 0, // 数据偏移量
+    });
+    return queryPrice;
+  }
+  async updateQueryConfigPrice(params) {
+    const query = {};
+    if (params.id === undefined || params.id === null || params.id === ''){
+      return false;
+    }
+    await this.app.mysql.update('query_price_config', params);
+    return true;
+  }
 }
 
 module.exports = QueryConfigService;

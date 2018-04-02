@@ -38,6 +38,12 @@ module.exports = app => {
 
 
 
+  router.post('/getPriceConfigInfo', controller.queryconfig.getPriceConfigInfo);
+  router.post('/updateQueryPrice', controller.queryconfig.updateQueryPrice);
+
+
+
+
 
 
 };

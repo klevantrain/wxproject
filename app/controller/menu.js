@@ -8,6 +8,7 @@ class MenuController extends Controller {
     const ctx = this.ctx;
     // ctx.body = "123123";
     this.getAccessToken(ctx).then(function (result){
+      console.log(result)
       const createResult = ctx.curl('https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' + result.access_token, {
         // 必须指定 method
         method: 'POST',
@@ -42,12 +43,12 @@ class MenuController extends Controller {
                           "key": "REPAIR_PROGRESS",
                           "sub_button": [ ]
                       },
-                      {
-                          "type": "click",
-                          "name": "wifi蓝牙码查询",
-                          "key": "WIFI",
-                          "sub_button": [ ]
-                      },
+                      // {
+                      //     "type": "click",
+                      //     "name": "wifi蓝牙码查询",
+                      //     "key": "WIFI",
+                      //     "sub_button": [ ]
+                      // },
 
                   ]
               },
@@ -72,18 +73,18 @@ class MenuController extends Controller {
                             "key": "NET_LOCK",
                            "sub_button": [ ]
                          },
-                         {
-                             "type": "click",
-                             "name": "下次策略查询",
-                             "key": "NEXT_QUERY",
-                            "sub_button": [ ]
-                          },
-                          {
-                              "type": "click",
-                              "name": "查国家/销售人",
-                              "key": "QUERY_COUNTRY_SELLER",
-                             "sub_button": [ ]
-                           },
+                         // {
+                         //     "type": "click",
+                         //     "name": "下次策略查询",
+                         //     "key": "NEXT_QUERY",
+                         //    "sub_button": [ ]
+                         //  },
+                          // {
+                          //     "type": "click",
+                          //     "name": "查国家/销售人",
+                          //     "key": "QUERY_COUNTRY_SELLER",
+                          //    "sub_button": [ ]
+                          //  },
                   ]
 
               },
@@ -99,19 +100,14 @@ class MenuController extends Controller {
                        {
                          "type": "view",
                          "name": "使用说明",
-                         "type":"view",  
-                         "url":"http://47.96.140.156/contactUs"
-                           //
-                           // "type": "click",
-                           // "name": "使用说明",
-                           // "key": "INSTRUCTIONS",
-                           // "sub_button": [ ]
+                         "type":"view",
+                         "url":"https://mp.weixin.qq.com/s?__biz=MzU5MzQ1MTcyMA==&mid=100000006&idx=1&sn=0f9601dac0fb163c30afab2bfd933eda&scene=19#wechat_redirect"
                         },
                         {
                             "type": "view",
                             "name": "联系客服",
                             "type":"view",
-                            "url":"http://www.soso.com/"
+                            "url":"https://mp.weixin.qq.com/s?__biz=MzU5MzQ1MTcyMA==&mid=100000002&idx=1&sn=1e01b51beb417754c2a4a51ce8e7f836&scene=19#wechat_redirect"
 
                          },
                          {

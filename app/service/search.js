@@ -33,7 +33,7 @@ class SearchService extends Service {
       gmt_modified: this.app.mysql.literals.now,
       status: 0,
     };
-    console.log(JSON.stringify(row));
+    // console.log(JSON.stringify(row));
     const result = await this.app.mysql.insert('user_log', row); // 更新 user_info 表中的记录
     const insertSuccess = result.affectedRows === 1;
     return insertSuccess;

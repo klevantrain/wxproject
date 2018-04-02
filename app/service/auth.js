@@ -44,10 +44,6 @@ class AuthService extends Service {
       result.price = price;
       result.balance = balance;
     }
-
-    // if(result.allow == true){
-    //   return result;
-    // }
     // console.log(JSON.stringify(result));
     return result;
   }
