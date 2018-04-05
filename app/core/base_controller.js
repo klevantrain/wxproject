@@ -29,6 +29,19 @@ class BaseController extends Controller {
   sendBalanceLow(requests,judge){
     return baseSend.sendBalanceLow(requests,judge);
   }
+  async sendAsysMessage(ctx,token,toUserId,data){
+    const result = await ctx.curl('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='+token, {
+
+      method: 'POST',
+      contentType: 'json',
+      data: {
+              touser:toUserId,
+              msgtype:"text",
+              text:data,
+            },
+      dataType: 'json',
+    });
+  }
 
 
   async getAccessToken(ctx){
@@ -113,7 +126,12 @@ class BaseController extends Controller {
       url = 'https://api.3023.com/apple/icloud?sn=' + key ;
     }else if(type == "NET_LOCK"){
       url = 'https://api.3023.com/apple/simlock?sn=' + key ;
+    }else if(type == "NEXT_QUERY"){
+      url = 'http://api.3023data.com/apple/carrier?sn=' + key ;
+    }else if(type == "QUERY_COUNTRY_SELLER"){
+      url = 'http://api.3023data.com/apple/mpn?sn=' + key ;
     }
+
     const result = await ctx.curl(url, {
       dataType: 'json',
       headers: {

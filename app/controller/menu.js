@@ -73,18 +73,18 @@ class MenuController extends Controller {
                             "key": "NET_LOCK",
                            "sub_button": [ ]
                          },
-                         // {
-                         //     "type": "click",
-                         //     "name": "下次策略查询",
-                         //     "key": "NEXT_QUERY",
-                         //    "sub_button": [ ]
-                         //  },
-                          // {
-                          //     "type": "click",
-                          //     "name": "查国家/销售人",
-                          //     "key": "QUERY_COUNTRY_SELLER",
-                          //    "sub_button": [ ]
-                          //  },
+                         {
+                             "type": "click",
+                             "name": "下次策略查询",
+                             "key": "NEXT_QUERY",
+                             "sub_button": [ ]
+                          },
+                          {
+                              "type": "click",
+                              "name": "查国家/销售人",
+                              "key": "QUERY_COUNTRY_SELLER",
+                             "sub_button": [ ]
+                           },
                   ]
 
               },

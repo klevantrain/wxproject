@@ -74,7 +74,7 @@ const baseSend = {
     '[ID激活锁今日免费查询次数]' + queryConfig.id_times+'/1'+ '\n' +
     '[ID黑白今日免费查询次数]' + queryConfig.id_black_white+'/1'+ '\n' +
     '[当前可用积分]' + userInfo[0].balance + '\n' +
-    '[充值请联系客服]'+  "客服名称" ;
+    '[充值请联系客服]'+  '<a href="https://mp.weixin.qq.com/s?__biz=MzU5MzQ1MTcyMA==&mid=100000002&idx=1&sn=1e01b51beb417754c2a4a51ce8e7f836&scene=19#wechat_redirect">客服(935016763)</a>' ;
     const resMsg = '<xml>' +
        '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
        '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
@@ -130,13 +130,29 @@ const baseSend = {
                  '手机型号：'+ data.querys.data.model + '\n' +
                   '维修状态：'+ isRepaire;
     }else if(data.type == "REPAIR_PROGRESS"){
+      const queryDetail = data.querys.data.details;
+      let arrayDetail = '\n';
+      if(queryDetail!=''&&queryDetail!=null){
+        for(let i=0;i<queryDetail.length;i++){
+          arrayDetail = arrayDetail + '----------'+i+'-----------' + '\n'+
+                        '维修状态：' + queryDetail[i].status  + '\n' +
+                        '维修说明：' + queryDetail[i].description  + '\n' +
+                        '时间：' + queryDetail[i].time  + '\n' ;
+
+        }
+      }
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
                  '手机型号：'+ data.querys.data.product + '\n' +
                  '维修时间：'+ data.querys.data.time + '\n' +
-                  '维修状态：'+ data.querys.data.status + '\n' +
-                  '维修详情：'+ data.querys.data.description;
+                 '维修状态：'+ data.querys.data.status + '\n' +
+                 '维修说明：'+ data.querys.data.description + '\n' +
+                 '维修详情：'+ arrayDetail;
+
+
+
+
     }else if(data.type == "ID_BLACK_WHITE"){
       let idBW = "黑";
       if(data.querys.data.icloud != "Lost"){
@@ -157,6 +173,38 @@ const baseSend = {
                  '查询结果：'+ '\n' +
                  '手机型号：'+ data.querys.data.model + '\n' +
                  '网络锁：'+ isLocked ;
+    }else if(data.type == "NEXT_QUERY"){
+      let isLocked = "有锁";
+      if(data.querys.data.simlock != "Locked"){
+          isLocked = "无锁";
+      }
+      content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
+                 '输入数据：'+ data.key + '\n' +
+                 '查询结果：'+ '\n' +
+                 '手机型号：'+ data.querys.data.model + '\n' +
+                 '购买地点：'+ data.querys.data.purchase.country + '\n' +
+                 '网络锁 ：'+ isLocked + '\n' +
+                 '配置锁 ：'+ data.querys.data.mdmlock + '\n' +
+                 '运营商：'+ data.querys.data.carrier ;
+    }else if(data.type == "QUERY_COUNTRY_SELLER"){
+
+      // data": {
+      // 		"sn": "F17VWQQZJCLG",  //序列号
+      // 		"product": "iPhone X",  //产品
+      // 		"type": "retail",  //产品类型
+      // 		"mpn": "MQCT2LL/A",  //型号，若与本机不一致，则可能为翻新机/官换机
+      // 		"country": {
+      // 			"en": "United States",  //国家
+      // 			"zh": "美国"
+      // 		}
+      // 	}
+
+      content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
+                 '输入数据：'+ data.key + '\n' +
+                 '查询结果：'+ '\n' +
+                 '产品：'+ data.querys.data.product + '\n' +
+                 '型号：'+ data.querys.data.mpn + '\n' +
+                 '国家：'+ data.querys.data.country.zh;
     }
     return content;
   },
@@ -184,10 +232,10 @@ const baseSend = {
     const key = requests.EventKey;
     if( key == "IMEI" || key == "ID" || key ==  "ID_BLACK_WHITE"){
         content = '您当前选择的是：'+config.typeEnumnName[key]+ '。今日免费次数已用完，'+ judge.price +'积分查询一次,剩余【'+
-                  judge.balance + '】积分。积分不足，建议联系客服充值。'
+                  judge.balance + '】积分。积分不足，建议联系 <a href="https://mp.weixin.qq.com/s?__biz=MzU5MzQ1MTcyMA==&mid=100000002&idx=1&sn=1e01b51beb417754c2a4a51ce8e7f836&scene=19#wechat_redirect">客服(935016763)</a> 充值。'
     }else{
       content = '您当前选择的是：'+config.typeEnumnName[key]+ '。'+ judge.price +'积分一次,剩余【'+
-                judge.balance + '】积分。积分不足，建议联系客服充值。'
+                judge.balance + '】积分。积分不足，建议联系 <a href="https://mp.weixin.qq.com/s?__biz=MzU5MzQ1MTcyMA==&mid=100000002&idx=1&sn=1e01b51beb417754c2a4a51ce8e7f836&scene=19#wechat_redirect">客服(935016763)</a> 充值。'
     }
     const resMsg = '<xml>' +
        '<ToUserName><![CDATA[' + requests.FromUserName + ']]></ToUserName>' +

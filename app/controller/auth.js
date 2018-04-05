@@ -22,11 +22,11 @@ class AuthController extends Controller {
     //3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature){
        // ctx.body = 'success';
-       // ctx.body = echostr;
-      await this.dealRequest(ctx).then(function(result){
-        // console.log("====="+result);
-        ctx.body = result;
-      });
+       ctx.body = echostr;
+      // await this.dealRequest(ctx).then(function(result){
+      //   // console.log("====="+result);
+      //   ctx.body = result;
+      // });
     } else {
         ctx.body = 'error';
     }
@@ -100,11 +100,11 @@ class AuthController extends Controller {
                    '2: ID激活锁查询'  + '\n' +
                    '3: 查看是否正在保修'  + '\n' +
                    '4: 维修进度查询'  + '\n' +
-                   // '5: WIFI蓝牙码查询'  + '\n' +
+                   '5: 网络锁查询'  + '\n' +
                    '6: ID黑白查询' + '\n' +
                    '7: 序列号查IMEI' + '\n' +
-                   // '8: 查国家/销售人' + '\n' +
-                   '9: 网络锁查询';
+                   '8: 下次策略查询' + '\n' +
+                   '9: 查国家/销售人';
       }else if(requests.EventKey === "MY_INFORMATION" ){
         const params = {
           wxId : requests.FromUserName,

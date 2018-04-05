@@ -20,15 +20,28 @@ class TestController extends Controller {
   }
   async request() {
     const ctx = this.ctx;
-    const result = await ctx.curl('https://api.3023.com/apple/activationlock?sn=F17S24BSH2XW', {
-      // data: {key : '6d278cde16510d142a8f7667a4792a28',},
-      dataType: 'json',
-      headers: {
-        'key': '6d278cde16510d142a8f7667a4792a28',
-        // 'key': 'eb7b94e4ca2da62a',
-      },
+    let token = '';
+    await this.getAccessToken(ctx).then(function (result){
+          token = result.access_token;
     });
-
+    const result = await ctx.curl('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='+token, {
+      // data: {key : '6d278cde16510d142a8f7667a4792a28',},
+      // 必须指定 method
+      method: 'POST',
+      // 通过 contentType 告诉 HttpClient 以 JSON 格式发送
+      contentType: 'json',
+      data: {
+              touser:"oyLgv1g8J7H6_RRWo6cg_0W-qnnU",
+              msgtype:"text",
+              text:
+              {
+                "content":"Hello World"
+              }
+            },
+      // 明确告诉 HttpClient 以 JSON 格式处理返回的响应 body
+      dataType: 'json',
+    });
+    // console.log(JSON.stringify(result));
     ctx.body = result;
   }
 
