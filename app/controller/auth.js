@@ -159,7 +159,7 @@ class AuthController extends Controller {
        requests.EventKey = await ctx.service.queryconfig.getQueryConfig(requests.FromUserName);
        const judge = await ctx.service.auth.judgeBlanace(requests);
        if(judge!=null && judge !=''&& judge.allow == true){
-         resulBody = _this.sendQuerySuccess(requests,"叮当小二正在努力查询中，请客观稍后几秒(下次策略查询可能等待较长时间，请客观勿重复提交)。")
+         resulBody = _this.sendQuerySuccess(requests,"叮当小二正在努力查询中，请客官稍候几秒(下次策略查询可能等待较长时间，请客官勿重复提交)。")
 
          _this.queryApple(token,queryKey,ctx,queryConfig,responseMes,requests);
          //查询历史记录
