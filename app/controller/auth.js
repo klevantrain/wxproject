@@ -22,11 +22,11 @@ class AuthController extends Controller {
     //3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if (code === signature){
        // ctx.body = 'success';
-       // ctx.body = echostr;
-      await this.dealRequest(ctx).then(function(result){
-        // console.log("====="+result);
-        ctx.body = result;
-      });
+       ctx.body = echostr;
+      // await this.dealRequest(ctx).then(function(result){
+      //   // console.log("====="+result);
+      //   ctx.body = result;
+      // });
     } else {
         ctx.body = 'error';
     }
@@ -159,7 +159,7 @@ class AuthController extends Controller {
        requests.EventKey = await ctx.service.queryconfig.getQueryConfig(requests.FromUserName);
        const judge = await ctx.service.auth.judgeBlanace(requests);
        if(judge!=null && judge !=''&& judge.allow == true){
-         resulBody = _this.sendQuerySuccess(requests,"叮当小二正在努力查询中，请客观稍后几秒。")
+         resulBody = _this.sendQuerySuccess(requests,"叮当小二正在努力查询中，请客观稍后几秒(下次策略查询可能等待较长时间，请客观勿重复提交)。")
 
          _this.queryApple(token,queryKey,ctx,queryConfig,responseMes,requests);
          //查询历史记录
