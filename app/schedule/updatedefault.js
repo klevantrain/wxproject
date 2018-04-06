@@ -13,12 +13,7 @@ class UpdateCache extends Subscription {
   async subscribe() {
     const ctx = this.ctx;
     ctx.service.queryconfig.updateDefaultQueryTimes();
-
-  console.log(3333)
   }
-
-
-
 }
 
 module.exports = UpdateCache;

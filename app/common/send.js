@@ -217,13 +217,6 @@ const baseSend = {
        '<MsgType><![CDATA[text]]></MsgType>' +
        '<Content><![CDATA[' +  data +']]></Content>' +
        '</xml>';
-    // const resMsg = '<xml>' +
-    //    '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
-    //    '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
-    //    '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
-    //    '<MsgType><![CDATA[text]]></MsgType>' +
-    //    '<Content><![CDATA[' + data.content +']]></Content>' +
-    //    '</xml>';
     return resMsg;
   },
 

@@ -42,7 +42,7 @@ class AuthController extends Controller {
     });
     const wxInfo = await _this.getWxUserInfo(token, requests.FromUserName,ctx);
     if(token == '' || wxInfo.errcode!=undefined){
-      console.log("服务器内部错误");
+      // console.log("服务器内部错误");
       return;
     }
     //创建用户
@@ -156,11 +156,12 @@ class AuthController extends Controller {
          ctx.service.queryconfig.setQueryConfig(requests.FromUserName,data);
        }
      }else{
-
        requests.EventKey = await ctx.service.queryconfig.getQueryConfig(requests.FromUserName);
        const judge = await ctx.service.auth.judgeBlanace(requests);
        if(judge!=null && judge !=''&& judge.allow == true){
-         resulBody = await _this.queryApple(queryKey,ctx,queryConfig,responseMes,requests);
+         resulBody = _this.sendQuerySuccess(requests,"叮当小二正在努力查询中，请客观稍后几秒。")
+
+         _this.queryApple(token,queryKey,ctx,queryConfig,responseMes,requests);
          //查询历史记录
          // console.log("wxInfo"+JSON.stringify(wxInfo))
          const userLogParam = {

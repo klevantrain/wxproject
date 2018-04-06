@@ -45,9 +45,7 @@ const queryBuild = {
       returnValue.code = 200;
       returnValue.keys = new Array(key);
       return returnValue;
-
     }
-
   }
 }
 module.exports = queryBuild;
