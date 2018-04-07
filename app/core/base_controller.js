@@ -188,7 +188,11 @@ class BaseController extends Controller {
     // });
     // console.log(result);
     if(result.data.code!=0 && result.data.message!=''){
-        responseMes.content = result.data.message + ' ,请输入正确的序列号或者IMEI！';
+        if(result.data.code == 5001){
+          responseMes.content = result.data.message;
+        }else{
+          responseMes.content = result.data.message + ' ,请输入正确的序列号或者IMEI！';
+        }
         return baseSend.sendQueryError(responseMes);
       }else if(result.data.code == 0){
         responseMes.type = type;
@@ -200,12 +204,23 @@ class BaseController extends Controller {
     }
   }
   async  query(ctx,url){
-    const  result = await ctx.curl(url, {
-        dataType: 'json',
-        headers: {
-          'key': '6d278cde16510d142a8f7667a4792a28',
-        },
-      });
+    let result = '';
+    try {
+      result = await ctx.curl(url, {
+          dataType: 'json',
+          headers: {
+            'key': '6d278cde16510d142a8f7667a4792a28',
+          },
+        });
+    } catch (err) {
+      result={
+        data:{
+          code:5001,
+          message:'苹果服务器响应超时，请客观稍后几秒重新提交查询，当前查询不会扣费，请客观放心！'
+        }
+      }
+    }
+
     return result;
   }
 
