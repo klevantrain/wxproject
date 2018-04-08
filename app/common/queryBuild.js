@@ -9,20 +9,25 @@ const queryBuild = {
     let returnValue= {
        code : 500,
     };
+    console.log(key);
+
     if( type != "REPAIR_PROGRESS" ){
-      if(key.indexOf(' ')>0 && key.indexOf('\n')>0){
-        returnValue.code = 500;
-        return returnValue;
-      }else if(key.indexOf(' ')>0){
+      // if(key.indexOf(' ')>0 && key.indexOf('\n')>0){
+      //   // console.log(34234324);
+      //   returnValue.code = 500;
+      //   returnValue.message = "查询参数不支持同时包含空格与换行，请客官输入用换行或者空格编辑的参数！";
+      //   return returnValue;
+      // }else
+      if(key.indexOf(' ')>0){
         const arrs = key.split(" ");
         const newArray = new Array();
         for(let i=0;i<arrs.length;i++){
           if(arrs[i]!="" && arrs[i]!=" " && arrs[i]!=null && arrs[i]!="null"&& arrs[i]!="\n"){
-            newArray.push(arrs[i]);
+            newArray.push(arrs[i].replace(/[\r\n]/g,""));
           }
         }
         returnValue.code = 200;
-        console.log(JSON.stringify(newArray));
+        // console.log(JSON.stringify(newArray));
         returnValue.keys = newArray;
         return returnValue;
       }else if(key.indexOf('\n')>0){
@@ -30,7 +35,7 @@ const queryBuild = {
         const newArray = new Array();
         for(let i=0;i<arrs.length;i++){
           if(arrs[i]!=""&& arrs[i]!=" " && arrs[i]!=null && arrs[i]!="null" && arrs[i]!="\n"){
-            newArray.push(arrs[i]);
+            newArray.push(arrs[i].replace(/\ +/g,""));
           }
         }
         returnValue.code = 200;

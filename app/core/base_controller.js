@@ -33,6 +33,7 @@ class BaseController extends Controller {
     return baseSend.sendQuerySuccess(requests,data);
   }
   async sendAsysMessage(ctx,token,toUserId,data){
+
     const result = await ctx.curl('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='+token, {
 
       method: 'POST',
@@ -64,6 +65,7 @@ class BaseController extends Controller {
     const url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + access_token + '&openid=' + openId + '&lang=zh_CN';
     const result = await ctx.curl(url, {
       dataType: 'json',
+      timeout: 20000,
     });
     // console.log("token=="+JSON.stringify(result))
     return result.data;
@@ -87,9 +89,15 @@ class BaseController extends Controller {
 
   async queryApple(token,key,ctx,type,responseMes,requests){
     const queryBuild = queryBuilds.buildQueryValue(key,type);
+    // console.log(JSON.stringify(queryBuild));
+
     let returnValue = '';
     // const responseMes = {};
-    if(queryBuild.code == 200){
+    if(queryBuild.code == 200 && queryBuild.keys.length>5 ){
+      this.sendAsysMessage(ctx,token,requests.FromUserName,"最多仅支持五个上限查询，当前查询条件是:"+JSON.stringify(queryBuild.keys));
+      return;
+    }
+    if(queryBuild.code == 200  ){
         const keys = queryBuild.keys;
         if(keys.length == 1){
           returnValue = await this.dealManyQuerys(keys[0],ctx,type,responseMes,requests);
@@ -105,31 +113,17 @@ class BaseController extends Controller {
         return;
         // return baseSend.sendQuerySuccess(requests,returnValue);
     }else{
-
+      this.sendAsysMessage(ctx,token,requests.FromUserName,queryBuild.message);
+      return;
     }
     this.sendAsysMessage(ctx,token,requests.FromUserName,returnValue);
-
     // return baseSend.sendQuerySuccess(returnValue);
-
   }
 
   // async test(){
   //   return "-asdagasd测试是是是是是死是活";
   // }
   async dealManyQuerys(key,ctx,type,responseMes,requests){
-
-
-    // console.log(JSON.stringify(requests));
-    // const resMsg = '<xml>' +
-    //    '<ToUserName><![CDATA[' + requests.FromUserName + ']]></ToUserName>' +
-    //    '<FromUserName><![CDATA[' + requests.ToUserName + ']]></FromUserName>' +
-    //    '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
-    //    '<MsgType><![CDATA[text]]></MsgType>' +
-    //    '<Content><![CDATA[' +  key +']]></Content>' +
-    //    '</xml>';
-    // return resMsg;
-
-
     let url = '';
     const appKey = "eb7b94e4ca2da62a";
     if(type == "IMEI"){
@@ -157,35 +151,38 @@ class BaseController extends Controller {
       }
       url = 'http://api.3023data.com/apple/carrier?sn=' + key ;
 
-    }else if(type == "QUERY_COUNTRY_SELLER"){
-      url = 'http://api.3023data.com/apple/mpn?sn=' + key ;
-    }
+      }else if(type == "QUERY_COUNTRY_SELLER"){
+        url = 'http://api.3023data.com/apple/mpn?sn=' + key ;
+      }
 
-    let result = '';
-    if(type == "NEXT_QUERY"){
-      // const _this  = this;
+      let result = '';
+      if(type == "NEXT_QUERY"){
+        // const _this  = this;
+        const nowDate = new   Date();
+        const start = nowDate.getTime();
+        result =  await this.query(ctx,url)
+        // console.log("等待了三秒123");
+        while(true){
+          if(new   Date().getTime()-start> 10000){
+            break;
+          }
+        }
+        // console.log("等待了三秒321");
+        result =  await this.query(ctx,url)
+
+      // await  setTimeout(function(){result =  _this.query(ctx,url)},3000);
+    }else{
       const nowDate = new   Date();
       const start = nowDate.getTime();
       result =  await this.query(ctx,url)
       // console.log("等待了三秒123");
       while(true){
-        if(new   Date().getTime()-start> 10000){
+        if(new   Date().getTime()-start> 1000){
           break;
         }
       }
-      // console.log("等待了三秒321");
-      result =  await this.query(ctx,url)
-
-      // await  setTimeout(function(){result =  _this.query(ctx,url)},3000);
-    }else{
       result = await this.query(ctx,url);
     }
-    // result = await ctx.curl(url, {
-    //   dataType: 'json',
-    //   headers: {
-    //     'key': '6d278cde16510d142a8f7667a4792a28',
-    //   },
-    // });
     // console.log(result);
     if(result.data.code!=0 && result.data.message!=''){
         if(result.data.code == 5001){
@@ -208,6 +205,7 @@ class BaseController extends Controller {
     try {
       result = await ctx.curl(url, {
           dataType: 'json',
+          timeout: 10000,
           headers: {
             'key': '6d278cde16510d142a8f7667a4792a28',
           },
@@ -216,7 +214,7 @@ class BaseController extends Controller {
       result={
         data:{
           code:5001,
-          message:'苹果服务器响应超时，请客观稍后几秒重新提交查询，当前查询不会扣费，请客观放心！'
+          message:'苹果服务器响应超时，请客官稍后几秒重新提交查询，当前查询不会扣费，请客官放心！'
         }
       }
     }
