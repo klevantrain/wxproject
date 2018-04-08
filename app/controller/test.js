@@ -19,29 +19,39 @@ class TestController extends Controller {
 
   }
   async request() {
+    const aa = "Aྀ工程师פ📱-胡亮";
+    let userName = aa;
+
+    const ranges = [
+        '\ud83c[\udf00-\udfff]',
+        '\ud83d[\udc00-\ude4f]',
+        '\ud83d[\ude80-\udeff]'
+        ];
+    userName = userName.replace(new RegExp(ranges.join('|'), 'g'), '');
+    console.log(userName);
     const ctx = this.ctx;
     let token = '';
     await this.getAccessToken(ctx).then(function (result){
           token = result.access_token;
     });
-    const result = await ctx.curl('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='+token, {
-      // data: {key : '6d278cde16510d142a8f7667a4792a28',},
-      // 必须指定 method
-      method: 'POST',
-      // 通过 contentType 告诉 HttpClient 以 JSON 格式发送
-      contentType: 'json',
-      data: {
-              touser:"oyLgv1g8J7H6_RRWo6cg_0W-qnnU",
-              msgtype:"text",
-              text:
-              {
-                "content":"Hello World"
-              }
-            },
-      // 明确告诉 HttpClient 以 JSON 格式处理返回的响应 body
-      dataType: 'json',
-    });
-    // console.log(JSON.stringify(result));
+    // const result = await ctx.curl('https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token='+token, {
+    //   // data: {key : '6d278cde16510d142a8f7667a4792a28',},
+    //   // 必须指定 method
+    //   method: 'POST',
+    //   // 通过 contentType 告诉 HttpClient 以 JSON 格式发送
+    //   contentType: 'json',
+    //   data: {
+    //           touser:"oyLgv1g8J7H6_RRWo6cg_0W-qnnU",
+    //           msgtype:"text",
+    //           text:
+    //           {
+    //             "content":"Hello World"
+    //           }
+    //         },
+    //   // 明确告诉 HttpClient 以 JSON 格式处理返回的响应 body
+    //   dataType: 'json',
+    // });
+    // // console.log(JSON.stringify(result));
     ctx.body = result;
   }
 

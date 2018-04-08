@@ -5,11 +5,18 @@ const Service = require('egg').Service;
 class UserService extends Service {
 
   async createUser(params){
+    let userName = params.nickName;
+    const ranges = [
+        '\ud83c[\udf00-\udfff]',
+        '\ud83d[\udc00-\ude4f]',
+        '\ud83d[\ude80-\udeff]'
+        ];
+    userName = userName.replace(new RegExp(ranges.join('|'), 'g'), '');
     const row = {
       wx_id: params.FromUserName,
       balance: 10,
       user_level: 0,
-      user_name: params.nickName,
+      user_name: userName,
       gmt_create: this.app.mysql.literals.now,
       gmt_modified: this.app.mysql.literals.now,
       status: 0,

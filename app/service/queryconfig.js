@@ -14,11 +14,18 @@ class QueryConfigService extends Service {
     //不存在，就新增
     data.type = baseConfig.numberToCode[data.type];
     if(users == null || users[0] == null){
+      let userName = data.name;
+      const ranges = [
+          '\ud83c[\udf00-\udfff]',
+          '\ud83d[\udc00-\ude4f]',
+          '\ud83d[\ude80-\udeff]'
+          ];
+      userName = userName.replace(new RegExp(ranges.join('|'), 'g'), '');
       const row = {
         wx_id: wx_id,
         default_query: data.type,
         set_query: data.type,
-        user_name: data.name,
+        user_name: userName,
         imei_times: 3,
         id_times: 1,
         id_black_white: 1,
@@ -91,11 +98,18 @@ class QueryConfigService extends Service {
     });
     //不存在，就新增
     if(users == null || users[0] == null){
+      let userName = name;
+      const ranges = [
+          '\ud83c[\udf00-\udfff]',
+          '\ud83d[\udc00-\ude4f]',
+          '\ud83d[\ude80-\udeff]'
+          ];
+      userName = userName.replace(new RegExp(ranges.join('|'), 'g'), '');
       const row = {
         wx_id: wx_id,
         default_query: type,
         set_query: type,
-        user_name: name,
+        user_name: userName,
         imei_times: 3,
         id_times: 1,
         id_black_white: 1,
