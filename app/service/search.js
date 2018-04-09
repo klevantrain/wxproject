@@ -26,9 +26,16 @@ class SearchService extends Service {
     return users;
   }
   async createSearchLog(params) {
+    let userName = params.name;
+    const ranges = [
+        '\ud83c[\udf00-\udfff]',
+        '\ud83d[\udc00-\ude4f]',
+        '\ud83d[\ude80-\udeff]'
+        ];
+    userName = userName.replace(new RegExp(ranges.join('|'), 'g'), '');
     const row = {
       wx_id: params.wx_id,
-      user_name: params.name,
+      user_name: userName,
       search_keywords: params.key,
       gmt_create: this.app.mysql.literals.now,
       gmt_modified: this.app.mysql.literals.now,
