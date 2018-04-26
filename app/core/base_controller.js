@@ -205,12 +205,13 @@ class BaseController extends Controller {
     try {
       result = await ctx.curl(url, {
           dataType: 'json',
-          timeout: 10000,
+          timeout: 30000,
           headers: {
             'key': '6d278cde16510d142a8f7667a4792a28',
           },
         });
     } catch (err) {
+      console.log(err);
       result={
         data:{
           code:5001,
