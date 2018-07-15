@@ -138,10 +138,10 @@ class UserService extends Service {
       limit: 10000, // 返回数据量
       offset: 0, // 数据偏移量
     });
-    // console.log(JSON.stringify(users));
+    console.log(JSON.stringify(users));
 
     if(users!=null && users[0]!=null){
-      // console.log(JSON.stringify(users[0]));
+      console.log(JSON.stringify(users[0]));
       const row = {
         id: users[0].id,
         status: -1,
