@@ -149,6 +149,7 @@ class BaseController extends Controller {
       }
       url = 'http://api.3023data.com/apple/gsx?app=case-text&sn=' + key ;
     }else if(type == "SN_TO_IMEI"){
+      console.log(111);
       url = 'http://api.3023data.com/apple/serial?sn=' + key ;
     }else if(type == "IS_REPAIR"){
       url = 'https://api.3023.com/apple/repair?sn=' + key ;
@@ -200,9 +201,11 @@ class BaseController extends Controller {
         }
       }
       result = await this.query(ctx,url);
+
+      console.log(JSON.stringify(result));
     }
     // console.log(result);
-    if(result.data.code!=0 && result.data.message!=''){
+    if(type!="SN_TO_IMEI"&&result.data.code!=0 && result.data.message!=''){
         if(result.data.code == 5001){
           responseMes.content = result.data.message;
         }else if(type == "GSX_STRATEGY_QUERY"||type == "GSX_CASE_QUERY"){
@@ -231,7 +234,7 @@ class BaseController extends Controller {
 
         }
         return baseSend.sendQueryError(responseMes);
-      }else if(result.data.code == 0){
+      }else if(type!="SN_TO_IMEI"&&result.data.code == 0){
         responseMes.type = type;
         responseMes.key = key;
         responseMes.querys = result.data;
@@ -240,6 +243,19 @@ class BaseController extends Controller {
           ctx.service.auth.updateBlanace(requests,type)
         }
         return baseSend.buildSuccessContent(responseMes);
+    }else if(type == "SN_TO_IMEI"){
+      if(result.data.code > 302315){
+        responseMes.content = result.data.message + ', 请输入正确的IMEI！';
+        return baseSend.sendQueryError(responseMes);
+      }else{
+        responseMes.type = type;
+        responseMes.key = key;
+        responseMes.querys = result.data;
+        //修改余额
+        ctx.service.auth.updateBlanace(requests,type)
+        return baseSend.buildSuccessContent(responseMes);
+      }
+      
     }
   }
   async  query(ctx,url){

@@ -117,7 +117,9 @@ const baseSend = {
       content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
                  '输入数据：'+ data.key + '\n' +
                  '查询结果：'+ '\n' +
-                  data.querys.data;
+                 'IMEI:' + data.querys.imei+ '\n' +
+                 'SN:'+data.querys.sn;
+                  
     }else if(data.type == "IS_REPAIR"){
       let isRepaire = "无维修历史！"
       if(data.querys.data.status =="once repaired"){
