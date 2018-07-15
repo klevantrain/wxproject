@@ -18,6 +18,43 @@ class TestController extends Controller {
   });
 
   }
+  async test2() {
+    const ctx = this.ctx;
+    const params = {
+      wx_id:"oyLgv1uXdzDWJ5PvuEBmB82R7JXA",
+      key:"359167074097936",
+      type_code:"GSX_CASE_QUERY",
+      type_name:"123123123123",
+      type:"GSX",
+      status:0,
+    }
+    // ctx.service.schedule.getScheduelInfo(params);
+
+    ctx.service.schedule.createScheduelInfo(params);
+    
+    // let token = '';
+    // await this.getAccessToken(ctx).then(function (result){
+    //   token = result.access_token;
+    // });
+    // console.log("===="+token)
+    // const result = await ctx.curl('https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token='+token, {
+    //     // data: {key : '6d278cde16510d142a8f7667a4792a28',},
+    //     // 必须指定 method
+    //     method: 'POST',
+    //     // 通过 contentType 告诉 HttpClient 以 JSON 格式发送
+    //     contentType: 'json',
+    //     data: {
+    //       access_token:"oyLgv1g8J7H6_RRWo6cg_0W-qnnU",
+    //       media:"text",
+    //         },
+    //     // 明确告诉 HttpClient 以 JSON 格式处理返回的响应 body
+    //     dataType: 'json',
+    //   });
+    //   console.log(JSON.stringify(result));
+
+  }
+
+
   async request() {
     const aa = "Aྀ工程师פ📱-胡亮";
     let userName = aa;

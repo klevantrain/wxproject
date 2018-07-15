@@ -30,7 +30,7 @@ module.exports = app => {
   router.post('/auth', controller.auth.auth);
 
   router.get('/createMenu', controller.menu.createMenu);
-  router.get('/test12', controller.test.test);
+  router.get('/test12', controller.test.test2);
   router.get('/testCurl', controller.test.request);
 
 

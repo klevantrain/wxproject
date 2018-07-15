@@ -61,24 +61,37 @@ class MenuController extends Controller {
                           "key": "ID_BLACK_WHITE",
                          "sub_button": [ ]
                        },
-                       {
-                           "type": "click",
-                           "name": "序列号查IMEI",
-                           "key": "SN_TO_IMEI",
-                          "sub_button": [ ]
+                    //    {
+                    //        "type": "click",
+                    //        "name": "序列号查IMEI",
+                    //        "key": "SN_TO_IMEI",
+                    //       "sub_button": [ ]
+                    //     },
+                        {
+                            "type": "click",
+                            "name": "GSX策略查询",
+                            "key": "GSX_STRATEGY_QUERY",
+                            "sub_button": [ ]
                         },
+                        
                         {
                             "type": "click",
                             "name": "网络锁查询",
                             "key": "NET_LOCK",
                            "sub_button": [ ]
                          },
-                         {
-                             "type": "click",
-                             "name": "下次策略查询",
-                             "key": "NEXT_QUERY",
-                             "sub_button": [ ]
-                          },
+                        //  {
+                        //      "type": "click",
+                        //      "name": "下次策略查询",
+                        //      "key": "NEXT_QUERY",
+                        //      "sub_button": [ ]
+                        //   },
+                        {
+                            "type": "click",
+                            "name": "GSX案例查询",
+                            "key": "GSX_CASE_QUERY",
+                            "sub_button": [ ]
+                        },
                           {
                               "type": "click",
                               "name": "查国家/销售人",

@@ -75,11 +75,12 @@ class BaseController extends Controller {
     const url = 'http://api.3023data.com/apple/validate?sn=' + key;
     const result = await ctx.curl(url, {
       dataType: 'json',
+      timeout: 30000,
       headers: {
         'key': '6d278cde16510d142a8f7667a4792a28',
       },
     });
-    // console.log(JSON.stringify(result));
+    // console.log("valid=="+JSON.stringify(result));
     if(result.data.code!=0){
       return false;
     }
@@ -130,6 +131,23 @@ class BaseController extends Controller {
       url = 'http://api.3023data.com/apple/coverage?sn=' + key ;
     }else if(type == "ID"){
       url = 'http://api.3023data.com/apple/activationlock?sn=' + key ;
+    }else if(type == "GSX_STRATEGY_QUERY"){
+   
+      const vaild = await this.valiadSN(ctx,key);
+      // console.log("验证结果" )
+      if(vaild == false){
+        responseMes.content = '请输入正确的序列号或者IMEI！';
+        return baseSend.sendQueryError(responseMes);
+      }
+      url = 'http://api.3023data.com/apple/gsx?image=false&lang=zh&app=policy-premium&sn=' + key ;
+    }else if(type == "GSX_CASE_QUERY"){
+      const vaild = await this.valiadSN(ctx,key);
+      // console.log("验证结果" )
+      if(vaild == false){
+        responseMes.content = '请输入正确的序列号或者IMEI！';
+        return baseSend.sendQueryError(responseMes);
+      }
+      url = 'http://api.3023data.com/apple/gsx?app=case-text&sn=' + key ;
     }else if(type == "SN_TO_IMEI"){
       url = 'http://api.3023.com/long/apple?app=sntoimei&key='+ appKey + '&sn=' + key ;
     }else if(type == "IS_REPAIR"){
@@ -151,26 +169,26 @@ class BaseController extends Controller {
       }
       url = 'http://api.3023data.com/apple/carrier?sn=' + key ;
 
-      }else if(type == "QUERY_COUNTRY_SELLER"){
-        url = 'http://api.3023data.com/apple/mpn?sn=' + key ;
-      }
+    }else if(type == "QUERY_COUNTRY_SELLER"){
+      url = 'http://api.3023data.com/apple/mpn?sn=' + key ;
+    }
 
-      let result = '';
-      if(type == "NEXT_QUERY"){
-        // const _this  = this;
-        const nowDate = new   Date();
-        const start = nowDate.getTime();
-        result =  await this.query(ctx,url)
-        // console.log("等待了三秒123");
-        while(true){
-          if(new   Date().getTime()-start> 10000){
-            break;
-          }
+    let result = '';
+    if(type == "NEXT_QUERY"){
+      // const _this  = this;
+      const nowDate = new   Date();
+      const start = nowDate.getTime();
+      result =  await this.query(ctx,url)
+      // console.log("等待了三秒123");
+      while(true){
+        if(new   Date().getTime()-start> 10000){
+          break;
         }
-        // console.log("等待了三秒321");
-        result =  await this.query(ctx,url)
+      }
+      // console.log("等待了三秒321");
+      result =  await this.query(ctx,url)
 
-      // await  setTimeout(function(){result =  _this.query(ctx,url)},3000);
+    // await  setTimeout(function(){result =  _this.query(ctx,url)},3000);
     }else{
       const nowDate = new   Date();
       const start = nowDate.getTime();
@@ -187,8 +205,30 @@ class BaseController extends Controller {
     if(result.data.code!=0 && result.data.message!=''){
         if(result.data.code == 5001){
           responseMes.content = result.data.message;
+        }else if(type == "GSX_STRATEGY_QUERY"||type == "GSX_CASE_QUERY"){
+          console.log(JSON.stringify(result));
+            // if(result.data.code == 302316){
+            //   responseMes.content = "数据查询中，一般1-24小时内处理完成，周日数据延迟至工作日处理，请耐心等候！";
+            if(result.data.code == 302316 || result.data.code == 302315){
+              responseMes.content = "提交数据查询成功，一般1-24小时内处理完成，周日数据延迟至工作日处理，请耐心等候！";
+              const params = {
+                wx_id:requests.FromUserName,
+                key:key,
+                type_code:type,
+                type_name:config.typeEnumnName[type],
+                type:"GSX",
+              }
+              const scheduleInfos = await ctx.service.schedule.getScheduelInfo(params);
+              if(scheduleInfos ==null || scheduleInfos ===""|| scheduleInfos.length<=0){
+                ctx.service.schedule.createScheduelInfo(params);
+                ctx.service.auth.updateBlanace(requests,type);
+              }
+            }else{
+              responseMes.content = "苹果服务器数据异常，请联系小二处理！"
+            }
         }else{
-          responseMes.content = result.data.message + ' ,请输入正确的序列号或者IMEI！';
+          responseMes.content = result.data.message + ', 请输入正确的序列号或者IMEI！';
+
         }
         return baseSend.sendQueryError(responseMes);
       }else if(result.data.code == 0){
@@ -196,7 +236,9 @@ class BaseController extends Controller {
         responseMes.key = key;
         responseMes.querys = result.data;
         //修改余额
-        ctx.service.auth.updateBlanace(requests,type)
+        if(type != "GSX_STRATEGY_QUERY"&&type != "GSX_CASE_QUERY"){
+          ctx.service.auth.updateBlanace(requests,type)
+        }
         return baseSend.buildSuccessContent(responseMes);
     }
   }

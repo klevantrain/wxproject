@@ -18,6 +18,8 @@ const config = {
     SN_TO_IMEI: "序列号查IMEI",
     NEXT_QUERY: "下次策略查询",
     QUERY_COUNTRY_SELLER: "查国家/销售人",
+    GSX_STRATEGY_QUERY:"GSX策略查询",
+    GSX_CASE_QUERY:"GSX案例查询"            
   },
   numberToCode: {
     1:"IMEI",
@@ -26,9 +28,14 @@ const config = {
     4:"REPAIR_PROGRESS",
     5:"NET_LOCK",
     6:"ID_BLACK_WHITE",
-    7:"SN_TO_IMEI",
-    8:"NEXT_QUERY",
+    // 7:"SN_TO_IMEI",
+    7:"GSX_STRATEGY_QUERY",
+    8:"GSX_CASE_QUERY",
+    // 8:"NEXT_QUERY",
     9:"QUERY_COUNTRY_SELLER",
+  },
+  queryContent:{
+    
   }
 };
 module.exports = config;

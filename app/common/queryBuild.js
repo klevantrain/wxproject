@@ -9,9 +9,9 @@ const queryBuild = {
     let returnValue= {
        code : 500,
     };
-    console.log(key);
+    // console.log(key);
 
-    if( type != "REPAIR_PROGRESS" ){
+    if( type != "REPAIR_PROGRESS" &&  type != "GSX_STRATEGY_QUERY" && type != "GSX_CASE_QUERY"){
       // if(key.indexOf(' ')>0 && key.indexOf('\n')>0){
       //   // console.log(34234324);
       //   returnValue.code = 500;

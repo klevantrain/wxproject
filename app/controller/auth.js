@@ -20,9 +20,10 @@ class AuthController extends Controller {
     const sha1Code = crypto.createHash('sha1');
     const code = sha1Code.update(str, 'utf-8').digest("hex");
     //3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+    // console.log(code);
     if (code === signature){
-       // ctx.body = 'success';
-       // ctx.body = echostr;
+      //  ctx.body = 'success';
+      //  ctx.body = echostr;
       await this.dealRequest(ctx).then(function(result){
         // console.log("====="+result);
         ctx.body = result;
@@ -76,6 +77,10 @@ class AuthController extends Controller {
         responseMes.content = 'IMEI/序列号查询';
       }else if(requests.EventKey === "ID" ){
         responseMes.content = 'ID激活锁查询';
+      }else if(requests.EventKey === "GSX_CASE_QUERY" ){
+        responseMes.content = 'GSX案例查询';
+      }else if(requests.EventKey === "GSX_STRATEGY_QUERY" ){
+        responseMes.content = 'GSX策略查询';
       }else if(requests.EventKey === "IS_REPAIR" ){
         responseMes.content = '查是否正在保修';
       }else if(requests.EventKey === "REPAIR_PROGRESS" ){
@@ -102,8 +107,8 @@ class AuthController extends Controller {
                    '4: 维修进度查询'  + '\n' +
                    '5: 网络锁查询'  + '\n' +
                    '6: ID黑白查询' + '\n' +
-                   '7: 序列号查IMEI' + '\n' +
-                   '8: 下次策略查询' + '\n' +
+                   '7: GSX策略查询' + '\n' +
+                   '8: GSX案例查询' + '\n' +
                    '9: 查国家/销售人';
       }else if(requests.EventKey === "MY_INFORMATION" ){
         const params = {
@@ -132,9 +137,7 @@ class AuthController extends Controller {
           }
       }else{
         if(requests.EventKey != "MY_INFORMATION"  && requests.EventKey != "CUSTOMER_SERVICE"){
-
             resulBody = _this.send(responseMes);
-
         }
       }
    }else if(requests != null && requests.MsgType === 'text'){
@@ -160,7 +163,7 @@ class AuthController extends Controller {
        const judge = await ctx.service.auth.judgeBlanace(requests);
        if(judge!=null && judge !=''&& judge.allow == true){
          // console.log(123123123)
-         resulBody = _this.sendQuerySuccess(requests,"叮当小二正在努力查询中，请客官稍候几秒(下次策略查询可能等待较长时间，请客官勿重复提交)。")
+         resulBody = _this.sendQuerySuccess(requests,"叮当小二正在努力查询中，请客官稍候几秒。")
 
          _this.queryApple(token,queryKey,ctx,queryConfig,responseMes,requests);
          //查询历史记录

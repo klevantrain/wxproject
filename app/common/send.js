@@ -82,6 +82,7 @@ const baseSend = {
        '<MsgType><![CDATA[text]]></MsgType>' +
        '<Content><![CDATA[' + content +']]></Content>' +
        '</xml>';
+       console.log(resMsg);
     return resMsg;
   },
   buildSuccessContent(data){
@@ -150,9 +151,6 @@ const baseSend = {
                  '维修说明：'+ data.querys.data.description + '\n' +
                  '维修详情：'+ arrayDetail;
 
-
-
-
     }else if(data.type == "ID_BLACK_WHITE"){
       let idBW = "黑";
       if(data.querys.data.icloud != "Lost"){
@@ -205,7 +203,17 @@ const baseSend = {
                  '产品：'+ data.querys.data.product + '\n' +
                  '型号：'+ data.querys.data.mpn + '\n' +
                  '国家：'+ data.querys.data.country.zh;
-    }
+    }else if(data.type == "GSX_STRATEGY_QUERY"){
+      content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
+                '输入数据：'+ data.key + '\n' +
+                '查询结果：'+ '\n' +
+                data.querys.data;
+    }else if(data.type == "GSX_CASE_QUERY"){
+      content = '查询类型： '+config.typeEnumnName[data.type] + '\n' +
+                '输入数据：'+ data.key + '\n' +
+                '查询结果：'+ '\n' +
+                data.querys.data;
+    }    
     return content;
   },
   sendQuerySuccess(requests,data){
