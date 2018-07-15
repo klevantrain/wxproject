@@ -90,7 +90,7 @@ class AuthController extends Controller {
       }else if(requests.EventKey === "ID_BLACK_WHITE" ){
         responseMes.content = 'ID黑白查询';
       }else if(requests.EventKey === "SN_TO_IMEI" ){
-        responseMes.content = '序列号查IMEI';
+        responseMes.content = 'IMEI查询序列号';
       }else if(requests.EventKey === "NET_LOCK" ){
         responseMes.content = '网络锁查询';
       }else if(requests.EventKey === "NEXT_QUERY" ){
@@ -100,7 +100,7 @@ class AuthController extends Controller {
       }else if(requests.EventKey === "DEFAULT_QUERY_SET" ){
         responseMes.content =
                    '请输入默认查询编号：'+ '\n' +
-                   // '0: 取消默认查询' + '\n' +
+                   '0: IMEI查询序列号' + '\n' +
                    '1: IMEI/序列号查询' + '\n' +
                    '2: ID激活锁查询'  + '\n' +
                    '3: 查看是否正在保修'  + '\n' +

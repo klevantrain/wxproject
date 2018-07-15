@@ -43,6 +43,12 @@ class MenuController extends Controller {
                           "key": "REPAIR_PROGRESS",
                           "sub_button": [ ]
                       },
+                          {
+                           "type": "click",
+                           "name": "IMEI查序列号",
+                           "key": "SN_TO_IMEI",
+                          "sub_button": [ ]
+                        },
                       // {
                       //     "type": "click",
                       //     "name": "wifi蓝牙码查询",
@@ -61,12 +67,7 @@ class MenuController extends Controller {
                           "key": "ID_BLACK_WHITE",
                          "sub_button": [ ]
                        },
-                    //    {
-                    //        "type": "click",
-                    //        "name": "序列号查IMEI",
-                    //        "key": "SN_TO_IMEI",
-                    //       "sub_button": [ ]
-                    //     },
+                   
                         {
                             "type": "click",
                             "name": "GSX策略查询",

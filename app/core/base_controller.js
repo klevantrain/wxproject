@@ -149,7 +149,7 @@ class BaseController extends Controller {
       }
       url = 'http://api.3023data.com/apple/gsx?app=case-text&sn=' + key ;
     }else if(type == "SN_TO_IMEI"){
-      url = 'http://api.3023.com/long/apple?app=sntoimei&key='+ appKey + '&sn=' + key ;
+      url = 'http://api.3023data.com/apple/serial?sn=' + key ;
     }else if(type == "IS_REPAIR"){
       url = 'https://api.3023.com/apple/repair?sn=' + key ;
     }
