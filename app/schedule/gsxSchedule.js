@@ -26,7 +26,7 @@ class GsxSchedule extends Subscription {
     const queryResult = await ctx.service.schedule.query(scheduleInfos[i]);
         // console.log("queryResult==="+JSON.stringify(queryResult));
         if(queryResult.data.code === 0){
-            console.log("开始发送");
+            // console.log("开始发送");
            await ctx.service.schedule.sendAsysMessage(scheduleInfos[i],queryResult.data.tip);
             const params = {
                 id:scheduleInfos[i].id,
