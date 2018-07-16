@@ -25,7 +25,7 @@ class GsxSchedule extends Subscription {
    for(let i=0;i<scheduleInfos.length;i++){
     const queryResult = await ctx.service.schedule.query(scheduleInfos[i]);
         // console.log("queryResult==="+JSON.stringify(queryResult));
-        // if(queryResult.data.code === 0){
+        if(queryResult.data.code === 0){
             console.log("开始发送");
            await ctx.service.schedule.sendAsysMessage(scheduleInfos[i],queryResult.data.tip);
             const params = {
@@ -33,7 +33,7 @@ class GsxSchedule extends Subscription {
                 status:-1,
             };
             await ctx.service.schedule.updateScheduelInfo(params);
-        // }
+        }
    }
 //    scheduleInfos.forEach(function(v,i,a){
 //        const ctx = this.ctx;
