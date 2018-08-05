@@ -35,6 +35,7 @@ module.exports = appInfo => {
 config.view = {
   mapping: {
     '.ejs': 'ejs',
+    // '.txt': 'assets',
   },
 };
 

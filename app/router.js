@@ -43,6 +43,9 @@ module.exports = app => {
 
 
 
+  router.get('/MP_verify_aLUX36WjZihjkBoZ.txt', controller.home.file);
+
+
 
 
 

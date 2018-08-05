@@ -17,6 +17,11 @@ exports.view = {
   enable: true,
   // package: 'egg-view',
 };
+
+exports.assets = {
+  enable: false,
+  package: 'egg-view-assets',
+}
 exports.ejs = {
   enable: true,
   package: 'egg-view-ejs',

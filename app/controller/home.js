@@ -8,6 +8,14 @@ class HomeController extends Controller {
       data: '请登录！',
     });
   }
+
+  async file() {
+    console.log(1231231)
+    await this.ctx.render('/security/MP_verify_aLUX36WjZihjkBoZ.ejs', {
+      data: '请登录！',
+    });
+  }
+
   async index() {
     const ctx = this.ctx;
     const userId = ctx.session.userId;
