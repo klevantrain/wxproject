@@ -269,7 +269,7 @@ class BaseController extends Controller {
           },
         });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       result={
         data:{
           code:5001,

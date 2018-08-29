@@ -117,12 +117,19 @@ class MenuController extends Controller {
                          "type":"view",
                          "url":"https://mp.weixin.qq.com/s?__biz=MzU5MzQ1MTcyMA==&mid=100000006&idx=1&sn=0f9601dac0fb163c30afab2bfd933eda&scene=19#wechat_redirect"
                         },
+
                         {
                             "type": "view",
                             "name": "联系客服",
                             "type":"view",
                             "url":"https://mp.weixin.qq.com/s?__biz=MzU5MzQ1MTcyMA==&mid=100000002&idx=1&sn=1e01b51beb417754c2a4a51ce8e7f836&scene=19#wechat_redirect"
 
+                         },
+                         {
+                            "type": "click",
+                            "name": "在线充值",
+                            "key": "ONLINE_PAY",
+                            "sub_button": [ ]
                          },
                          {
                              "type": "click",

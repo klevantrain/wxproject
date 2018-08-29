@@ -45,8 +45,7 @@ module.exports = app => {
 
   router.get('/MP_verify_aLUX36WjZihjkBoZ.txt', controller.home.file);
 
-
-
-
+  router.get('/pay.html', controller.pay.getPayHtmlInfo);
+  router.get('/getPrePaidId', controller.pay.getPrePaidId);
 
 };
