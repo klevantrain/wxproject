@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const token = 'sunshichaung';
 const XMLJS = require('xml2js');
 class AuthController extends Controller {
-  async auth() {
+  async auth() {  
     // console.log(12312312)
     const ctx = this.ctx;
     const signature = ctx.query.signature;
@@ -20,14 +20,14 @@ class AuthController extends Controller {
     const sha1Code = crypto.createHash('sha1');
     const code = sha1Code.update(str, 'utf-8').digest("hex");
     //3.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-    // console.log(code);
+    // console.log("code===",code);
     if (code === signature){
-      //  ctx.body = 'success';
-      //  ctx.body = echostr;
-      await this.dealRequest(ctx).then(function(result){
-        // console.log("====="+result);
-        ctx.body = result;
-      });
+       ctx.body = 'success';
+       ctx.body = echostr;
+      // await this.dealRequest(ctx).then(function(result){
+      //   // console.log("====="+result);
+      //   ctx.body = result;
+      // });
     } else {
         ctx.body = 'error';
     }
