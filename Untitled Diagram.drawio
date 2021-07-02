@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-02T02:24:45.752Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="j8I90o2NsIEF1HrHKj6i" version="14.8.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-02T02:27:21.640Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="JUnGVt_Xuy78PNt_pEvl" version="14.8.3" type="github">
   <diagram id="IdMVkafQGEphkV8RRrkL" name="Page-1">
     <mxGraphModel dx="925" dy="1747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -47,22 +47,22 @@
           <mxGeometry x="380" y="150" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="GI7GzQgG5lNsB9hwAz22-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="115" y="30" width="440" height="80" as="geometry" />
+          <mxGeometry x="10" y="-180" width="440" height="80" as="geometry" />
         </mxCell>
         <mxCell id="GI7GzQgG5lNsB9hwAz22-5" value="触达：" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="90" y="-30" width="110" height="20" as="geometry" />
+          <mxGeometry y="-220" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="GI7GzQgG5lNsB9hwAz22-6" value="垂搜" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="125" y="50" width="90" height="40" as="geometry" />
+          <mxGeometry x="20" y="-160" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="GI7GzQgG5lNsB9hwAz22-7" value="推荐" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="235" y="50" width="90" height="40" as="geometry" />
+          <mxGeometry x="130" y="-160" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="GI7GzQgG5lNsB9hwAz22-8" value="旺铺" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="345" y="50" width="90" height="40" as="geometry" />
+          <mxGeometry x="240" y="-160" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="GI7GzQgG5lNsB9hwAz22-9" value="工作台" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="455" y="50" width="90" height="40" as="geometry" />
+          <mxGeometry x="350" y="-160" width="90" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
