@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-06T13:09:53.660Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="3aTh-SM82IGb0eliV1Ot" version="14.8.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-06T13:10:06.584Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="2-bA2Yi8S0J9e0PoZxY7" version="14.8.3" type="github">
   <diagram id="IdMVkafQGEphkV8RRrkL" name="Page-1">
     <mxGraphModel dx="1752" dy="1747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -159,6 +159,9 @@
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-56" value="个人自用" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="547" y="45" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r45ULGyqe0KoC_mPu8aS-58" value="专业导购场景：" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="617" y="110" width="110" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
