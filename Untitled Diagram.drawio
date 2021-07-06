@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-06T12:39:56.755Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="y9Q7tza1SYqH-dSQZmjy" version="14.8.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-06T12:41:09.814Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="QwTE2R9hO6PiQv-8W30u" version="14.8.3" type="github">
   <diagram id="IdMVkafQGEphkV8RRrkL" name="Page-1">
     <mxGraphModel dx="1752" dy="1747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -79,7 +79,7 @@
         <mxCell id="r45ULGyqe0KoC_mPu8aS-16" value="核心：高效匹配人货场" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="220" y="-190" width="140" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="r45ULGyqe0KoC_mPu8aS-17" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="r45ULGyqe0KoC_mPu8aS-17" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="-10" y="35" width="800" height="50" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-19" value="制造型工厂" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -149,7 +149,7 @@
           <mxGeometry x="-40" y="220" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-47" value="用户" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-40" y="15" width="110" height="20" as="geometry" />
+          <mxGeometry x="-40" y="50" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-54" value="批发零售商" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="430" y="45" width="70" height="30" as="geometry" />
