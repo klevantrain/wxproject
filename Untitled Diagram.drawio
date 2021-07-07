@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-07T02:37:21.717Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="O1XPOrE_bhtTq4kkw0-x" version="14.8.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-07T02:38:59.932Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="g6tmCY2nlQV9EhFcYsAM" version="14.8.3" type="github">
   <diagram id="IdMVkafQGEphkV8RRrkL" name="Page-1">
     <mxGraphModel dx="1752" dy="1747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -139,10 +139,10 @@
         <mxCell id="r45ULGyqe0KoC_mPu8aS-42" value="专业化" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="485" y="420" width="90" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="r45ULGyqe0KoC_mPu8aS-43" value="电工电气电子" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="r45ULGyqe0KoC_mPu8aS-43" value="电工电气" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="475" y="330" width="90" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="r45ULGyqe0KoC_mPu8aS-44" value="机械" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="r45ULGyqe0KoC_mPu8aS-44" value="机械设备" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="575" y="330" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-45" value="纺织" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
