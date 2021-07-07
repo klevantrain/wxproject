@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-07-07T08:06:54.788Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="qGjhaY-nnJ34JM2C_eHK" version="14.8.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-07T08:09:32.381Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="xY1q3zIt-PhMuOThOPcS" version="14.8.3" type="github">
   <diagram id="IdMVkafQGEphkV8RRrkL" name="Page-1">
-    <mxGraphModel dx="1752" dy="1747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1752" dy="578" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -25,21 +25,6 @@
         <mxCell id="GI7GzQgG5lNsB9hwAz22-2" value="工业品直播" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="130" y="140" width="70" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="GI7GzQgG5lNsB9hwAz22-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="32" y="-200" width="440" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="GI7GzQgG5lNsB9hwAz22-5" value="触达：" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="22" y="-240" width="110" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="GI7GzQgG5lNsB9hwAz22-6" value="push" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="42" y="-180" width="90" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="GI7GzQgG5lNsB9hwAz22-8" value="旺铺" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="262" y="-180" width="90" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="GI7GzQgG5lNsB9hwAz22-9" value="工作台" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="372" y="-180" width="90" height="40" as="geometry" />
-        </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-1" value="营销型导购场景：" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="302" y="110" width="110" height="20" as="geometry" />
         </mxCell>
@@ -60,9 +45,6 @@
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-14" value="品类市场" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="210" y="140" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="r45ULGyqe0KoC_mPu8aS-16" value="核心：高效匹配人货场" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="222" y="-240" width="140" height="20" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-17" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="-10" y="40" width="810" height="50" as="geometry" />
