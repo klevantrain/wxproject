@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-07T02:54:58.787Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="MC5rdp40H3GlfEa6lWfA" version="14.8.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-07T02:55:46.067Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36" etag="XSd7_VIVw2oPm1Lf6aw0" version="14.8.3" type="github">
   <diagram id="IdMVkafQGEphkV8RRrkL" name="Page-1">
     <mxGraphModel dx="1752" dy="1747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -89,10 +89,10 @@
           <mxGeometry x="70" y="390" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-25" value="品牌分销（正品低价）" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="180" y="390" width="90" height="40" as="geometry" />
+          <mxGeometry x="204" y="390" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-26" value="行家选（服务低价）" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="290" y="390" width="90" height="40" as="geometry" />
+          <mxGeometry x="330" y="390" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-28" value="采建" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="617" y="135" width="50" height="40" as="geometry" />
@@ -103,8 +103,8 @@
         <mxCell id="r45ULGyqe0KoC_mPu8aS-33" value="展会" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="737" y="135" width="50" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="r45ULGyqe0KoC_mPu8aS-35" value="行业优品" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="390" width="90" height="40" as="geometry" />
+        <mxCell id="r45ULGyqe0KoC_mPu8aS-35" value="行业优品（行业经验）" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="462" y="390" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-36" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-10" y="310" width="810" height="60" as="geometry" />
@@ -121,8 +121,8 @@
         <mxCell id="r45ULGyqe0KoC_mPu8aS-41" value="化工原材料" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="323.5" y="325" width="68" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="r45ULGyqe0KoC_mPu8aS-42" value="专业化" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="510" y="390" width="90" height="40" as="geometry" />
+        <mxCell id="r45ULGyqe0KoC_mPu8aS-42" value="专业化（专业导购）" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="390" width="90" height="40" as="geometry" />
         </mxCell>
         <mxCell id="r45ULGyqe0KoC_mPu8aS-43" value="电工电气" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="421" y="325" width="55" height="30" as="geometry" />
